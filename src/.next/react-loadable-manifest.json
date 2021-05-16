@@ -4,5 +4,12 @@
     "files": [
       "static/chunks/node_modules_next_dist_client_dev_noop_js.js"
     ]
+  },
+  "about.tsx -> ../components/p5/p5": {
+    "id": "./components/p5/p5.tsx",
+    "files": [
+      "static/chunks/vendors-node_modules_react-p5_build_index_js.js",
+      "static/chunks/components_p5_p5_tsx.js"
+    ]
   }
 }

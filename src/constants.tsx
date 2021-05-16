@@ -1665,14 +1665,11 @@ const aboutPageContent = {
 
   text: <>
     <p>
-      This site was made by me, <Anchor href={"https://www.linkedin.com/in/francesco-arillotta-104aa8122/"}>Francesco Arillotta.</Anchor> Think of it as a fun weekend project to know me - a sort of expressive experiment through the weird crap I do.
+      This site was made by me, <Anchor href={"https://www.linkedin.com/in/francesco-arillotta-104aa8122/"}>Francesco Arillotta.</Anchor> Think of it as a fun weekend project to get to know me! A sort of expressive experiment through the weird crap I do.
     </p>
     <p>
-      I used a mix of technologies that I am very passionate about. Among those technologies are: Next.js, React, Typescript, GLSL, Three.js, P5.js, Framer/motion.  
+      I used a mix of technologies that I am passionate about. Among those are: Next.js, React, Typescript, GLSL, Three.js, P5.js, Framer/motion.  
     </p> 
-    <p> 
-      and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
   </>
   
 }
