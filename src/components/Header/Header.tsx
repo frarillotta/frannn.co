@@ -1,16 +1,20 @@
-import {Button} from "../Button/Button";
+import {HeaderLink} from "../HeaderLink/HeaderLink";
 import styles from "./Header.module.css";
+import {HeaderProps} from "../../types";
 
-function Header() {
+const Header = ({variant = "black"}: HeaderProps) => {
 
     return (
     
-        <ul className={styles.headerWrapper}>
+        <ul className={styles.headerWrapper} style={{color: `${variant}`}}>
             <li>
-                <Button text={"Hello I am a button"} link={"#"}></Button>
+                <HeaderLink text={"Home"} href={"/"}/>
             </li>
             <li>
-                <Button text={"What I do"} link={"#"}></Button>
+                <HeaderLink text={"About"} href={"/about"}/>
+            </li>
+            <li>
+                <HeaderLink text={"Work"} href={"/work"}/>
             </li>
         </ul>
     )

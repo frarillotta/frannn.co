@@ -1,16 +1,33 @@
+import { useCallback, useEffect, useRef } from "react";
+import {renderShader} from "../../utils";
+import {ThreeFragShaderProps} from "../../types";
 
+const Shader = ({shader}: ThreeFragShaderProps) => {
 
-function Shader({fragCode}) {
+  const {fragmentShader, texture} = shader;
 
+  let canvas = useRef();
+
+  const ref = useCallback((node)=>{
+    canvas.current = node;
+  }, []);
+
+  useEffect(()=>{
+
+    if (!canvas.current) return;
+
+    renderShader(canvas.current, fragmentShader, texture)
+
+  }, [canvas.current])
+  
   return (
     <canvas 
-      id="glslCanvas"
+      ref={ref}
       style={{width: "100%", height: "100%"}}
       className="glslCanvas"
-      data-fragment={fragCode} 
       width="500" 
       height="500"
-      />
+    />
   )
 
 }

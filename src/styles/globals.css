@@ -2,8 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,7 +20,6 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -49,11 +47,31 @@ table {
 }
 
 #__next {
-	height: 100%;
+	background: white;
+	min-height: 100%;
+}
+
+.page-transition-enter {
+	opacity: 0;
+}
+.page-transition-enter-active {
+	opacity: 1;
+	transition: opacity 300ms;
+}
+.page-transition-exit {
+	opacity: 1;
+}
+.page-transition-exit-active {
+	opacity: 0;
+	transition: opacity 300ms;
 }
 
 * {
   	box-sizing: border-box;
+	cursor: none!important;
+	font-family: 'Libre Baskerville', serif;
+	transition: color .75s linear;
+	-webkit-font-smoothing: antialiased;
 }
 
 :root {
@@ -64,7 +82,13 @@ html, body {
   	height: 100%
 }
 
-* {
-	--color-text: white;
-	font-family: 'Libre Baskerville', serif;
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.p5-canvas {
+
+	width: 100%!important;
+
 }
