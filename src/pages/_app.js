@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head> 
       {/* {hack to loads the image in static files} */}
-      <img className={'display-none'} src={"/assets/pictures/anseladams.jpg"}/>
+      <img className={'display-none'} src={"/anseladams.jpg"}/>
      
       <AnimatePresence exitBeforeEnter initial={false}>
         <Component {...pageProps} key={router.route} />
