@@ -2,11 +2,12 @@ import styles from "../styles/Home.module.css"
 import {Shader} from "../components/Shader/Shader"
 import {shaders, homepageText} from "../constants"
 import {Header} from "../components/Header/Header"
+import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
 
 export default function Home() {
 
   return (
-    <div className={styles.container}>
+    <AnimationWrapper className={styles.container}>
       <div className={styles.background}>
           <Shader shader={shaders.fbm}/>
       </div>
@@ -21,6 +22,6 @@ export default function Home() {
         </article>
           
       </main>
-    </div>
+    </AnimationWrapper>
   )
 }

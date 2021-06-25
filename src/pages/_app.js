@@ -3,9 +3,7 @@ import Head from 'next/head';
 import {Cursor} from "../components/Cursor/Cursor";
 import {cursorTracker} from "../utils";
 import { useEffect } from 'react';
-import { PageTransition } from 'next-page-transitions';
-
-
+import { AnimatePresence } from "framer-motion"
 function MyApp({ Component, pageProps }) {
   const {router} = pageProps;
   useEffect(()=>{
@@ -17,9 +15,9 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
      
-      <PageTransition timeout={300} classNames="page-transition">
+      <AnimatePresence exitBeforeEnter initial={false}>
         <Component {...pageProps} key={router.route} />
-      </PageTransition>
+      </AnimatePresence>
       <Cursor/>
     </>
   )

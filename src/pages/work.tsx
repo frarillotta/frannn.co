@@ -2,11 +2,12 @@ import {Header} from "../components/Header/Header";
 import styles from "../styles/Work.module.css";
 import {CompositeCard} from "../components/CompositeCard/CompositeCard";
 import {roles} from "../constants";
+import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
 
 export default function Work() {
 
     return (
-        <div className={styles.container}>
+        <AnimationWrapper className={styles.container}>
             <Header variant={"black"}/>
             <main className={styles.main}>
                 {roles.map((role, index)=>{
@@ -23,8 +24,7 @@ export default function Work() {
                     </CompositeCard>
                 })}
             </main>
-
-        </div>
+        </AnimationWrapper>
     )
 
 }
