@@ -1673,7 +1673,7 @@ const aboutPageContent = {
       This site was made by me, <Anchor href={"https://www.linkedin.com/in/francesco-arillotta-104aa8122/"}>Francesco Arillotta.</Anchor> Think of it as a fun weekend project to get to know me! A sort of expressive experiment through the weird crap I do.
     </p>
     <p>
-      I used a mix of technologies that I am passionate about. Among those are: Next.js, React, Typescript, GLSL, Three.js, P5.js, Framer/motion.  
+      did this shit update?
     </p> 
   </>
   
