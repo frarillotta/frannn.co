@@ -562,11 +562,6 @@ const shaders = {
         vec3 bg = mix(vec3(0.), vec3(.3), dist);
         vec3 camPos = vec3(0., 0., 3.);
         vec3 ray = normalize(vec3(st - .5, -1.5));
-
-        //pixelation
-        float grid = u_resolution.x/2.5;
-        vec3 ray_i = floor(ray * grid)/grid;
-        ray = ray_i;
     
         vec3 rayPos = camPos;
         float t = 0.;
