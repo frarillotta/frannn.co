@@ -1,15 +1,15 @@
 import {Header} from "../components/Header/Header";
-import styles from "../styles/Work.module.css";
 import {CompositeCard} from "../components/CompositeCard/CompositeCard";
 import {roles} from "../constants";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
+import {styled} from 'styled-components';
 
 export default function Work() {
 
     return (
-        <AnimationWrapper className={styles.container}>
+        <AnimationWrapper>
             <Header variant={"black"}/>
-            <main className={styles.main}>
+            <Main>
                 {roles.map((role, index)=>{
                     return <CompositeCard 
                         key={role.title}
@@ -23,8 +23,29 @@ export default function Work() {
                         {role.children}
                     </CompositeCard>
                 })}
-            </main>
+            </Main>
         </AnimationWrapper>
     )
 
 }
+
+const Main = styled.main`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    gap: 6rem;
+    max-width: 80vw;
+
+@media (max-width: 500px) {
+
+    & {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+        gap: 6rem;
+        max-width: none;
+    }
+
+}`

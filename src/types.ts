@@ -51,3 +51,8 @@ export interface Roles {
     shader: ReactElement<ThreeFragShaderProps | P5Props>;
 
 }
+
+export interface AnimationWrapperProps {
+    children?: JSX.Element | JSX.Element[];
+    className?: string;
+}
