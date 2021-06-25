@@ -1113,7 +1113,7 @@ const shaders = {
     
         gl_FragColor = color;
     }`,
-    texture: "/assets/pictures/anseladams.jpg"
+    texture: "/anseladams.jpg"
   },
   simplexNoise: {
     fragmentShader: ` #ifdef GL_ES
