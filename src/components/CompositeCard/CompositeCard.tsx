@@ -1,5 +1,5 @@
 import {CompositeCardProps} from "../../types";
-import {styled} from 'styled-components';
+import styled from 'styled-components';
 
 const CompositeCard = ({children, subtitle, location, invert = false, title, date = "", renderEl = null}: CompositeCardProps) => {
 

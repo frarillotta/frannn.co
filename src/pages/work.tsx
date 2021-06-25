@@ -2,7 +2,7 @@ import {Header} from "../components/Header/Header";
 import {CompositeCard} from "../components/CompositeCard/CompositeCard";
 import {roles} from "../constants";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
-import {styled} from 'styled-components';
+import styled from 'styled-components';
 
 export default function Work() {
 
