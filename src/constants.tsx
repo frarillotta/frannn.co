@@ -1670,7 +1670,7 @@ const aboutPageContent = {
 
   text: <>
     <p>
-      This site was made by me, <Anchor href={"https://www.linkedin.com/in/francesco-arillotta-104aa8122/"}>Francesco Arillotta.</Anchor> Think of it as a fun weekend project to get to know me! A sort of expressive experiment through the weird crap I do.
+      YEa i definitely need to write some shit in here, idk what tho
     </p>
     <p>
       did this shit update?
