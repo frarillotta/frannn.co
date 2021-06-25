@@ -10,17 +10,17 @@ export default function Work() {
             <Header variant={"black"}/>
             <main className={styles.main}>
                 {roles.map((role, index)=>{
-                return <CompositeCard 
-                    key={role.title}
-                    invert={index % 2 === 0}
-                    title={role.company}
-                    location={role.location}
-                    subtitle={role.title}
-                    date={role.date}
-                    renderEl={role.shader}
-                >            
-                    {role.children}
-                </CompositeCard>
+                    return <CompositeCard 
+                        key={role.title}
+                        invert={index % 2 === 0}
+                        title={role.company}
+                        location={role.location}
+                        subtitle={role.title}
+                        date={role.date}
+                        renderEl={role.shader}
+                    >            
+                        {role.children}
+                    </CompositeCard>
                 })}
             </main>
 

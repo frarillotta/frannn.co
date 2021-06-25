@@ -21,9 +21,9 @@ export default function About() {
                     <div className={styles.p5El}>
                         <P5Renderer draw={draw} setup={setup} windowResized={windowResized}/>
                     </div>
-                    <p className={styles.text}>
+                    <div className={styles.text}>
                         {aboutPageContent.text}
-                    </p>
+                    </div>
                 </section>
             </main>
         </div>

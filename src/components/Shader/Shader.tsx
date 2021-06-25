@@ -18,7 +18,7 @@ const Shader = ({shader}: ThreeFragShaderProps) => {
 
     renderShader(canvas.current, fragmentShader, texture)
 
-  }, [canvas.current])
+  }, [fragmentShader, texture])
   
   return (
     <canvas 

@@ -1,6 +1,6 @@
 module.exports = { 
     react: {
-        useSuspense: false,
+        useSuspense: true,
         wait: true
     }
 }
