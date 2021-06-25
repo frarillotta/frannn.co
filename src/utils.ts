@@ -45,9 +45,9 @@ function mouseOutInEventListener(el) {
 
     return () => {
 
-        el.removeEventListener('mouseout', mouseoutEvent);
-        el.removeEventListener('mouseover', mouseoverEvent);
-        el.removeEventListener('click', clickEvent);
+        el.removeEventListener("mouseout", mouseoutEvent);
+        el.removeEventListener("mouseover", mouseoverEvent);
+        el.removeEventListener("click", clickEvent);
     
     }
 

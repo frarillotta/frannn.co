@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import Link from 'next/link'
+import Link from "next/link"
 import {mouseOutInEventListener} from "../../utils";
 import {AnchorProps} from "../../types";
 

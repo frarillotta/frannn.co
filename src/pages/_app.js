@@ -1,8 +1,8 @@
-import '../styles/globals.css';
-import Head from 'next/head';
+import "../styles/globals.css";
+import Head from "next/head";
 import {Cursor} from "../components/Cursor/Cursor";
 import {cursorTracker} from "../utils";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { AnimatePresence } from "framer-motion"
 function MyApp({ Component, pageProps }) {
   const {router} = pageProps;
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head> 
       {/* {hack to loads the image in static files} */}
-      <img className={'display-none'} src={"/anseladams.jpg"}/>
+      <img className={"display-none"} src={"/anseladams.jpg"}/>
      
       <AnimatePresence exitBeforeEnter initial={false}>
         <Component {...pageProps} key={router.route} />

@@ -1,12 +1,12 @@
 import {HeaderLink} from "../HeaderLink/HeaderLink";
-import styles from "./Header.module.css";
 import {HeaderProps} from "../../types";
+import styled from 'styled-components';
 
 const Header = ({variant = "black"}: HeaderProps) => {
 
     return (
     
-        <ul className={styles.headerWrapper} style={{color: `${variant}`}}>
+        <HeaderWrapper style={{"--color": `${variant}`}}>
             <li>
                 <HeaderLink text={"Home"} href={"/"}/>
             </li>
@@ -16,8 +16,26 @@ const Header = ({variant = "black"}: HeaderProps) => {
             <li>
                 <HeaderLink text={"Work"} href={"/work"}/>
             </li>
-        </ul>
+        </HeaderWrapper>
     )
 }
+
+const HeaderWrapper = styled.ul`
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem;
+    padding-top: calc(3rem + 4px);
+    color: var(--color);
+    justify-content: space-around;
+
+@media (max-width: 500px) {
+
+    & {
+        flex-direction: column;
+    }
+
+}
+`
 
 export {Header}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "./TextCarousel.module.css";
+import styled from 'styled-components';
 import { motion, AnimatePresence } from "framer-motion";
 import {TextCarouselProps} from "../../types";
 
@@ -47,18 +47,16 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
     }, [index]);
 
     return (
-        <span 
+        <TermWrapper 
             ref={parentEl} 
-            style={{ width: `${activeEl.current && activeEl.current.clientWidth}px`}} 
-            className={styles.termWrapper}
+            style={{ '--width': `${activeEl.current && activeEl.current.clientWidth}px`}} 
         >
             <AnimatePresence initial={false}>
-                <motion.div
+                <Term
                     key={index}
                     style={{
-                        color: color
+                        "--color": color
                     }}
-                    className={styles.term}
                     ref={activeEl}
                     initial="enter"
                     animate="center"
@@ -69,11 +67,30 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
                     opacity: { duration: 0.4 }
                 }}>
                     {terms[index]}
-                </motion.div>
+                </Term>
             </AnimatePresence>
-        </span>
+        </TermWrapper>
     )
 
 }
+
+const TermWrapper = styled.span`
+    width: var(--width);
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 1rem;
+    margin: 0 2px;
+    transition: width .4s cubic-bezier(0.12, 0.59, 0.47, 0.93);
+`
+
+const Term = styled(motion.div)`
+    color: var(--color);
+    position: absolute;
+    top: -2px;
+    left: 0;
+    white-space: nowrap;
+    font-weight: 700;
+`
 
 export {TextCarousel}

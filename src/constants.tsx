@@ -1687,7 +1687,7 @@ const roles: Roles[] = [
     date: "May 2021 - Present",
     children: <>
       <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
       </p> 
       <p> 
         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1701,7 +1701,7 @@ const roles: Roles[] = [
     date: "July 2020 - April 2021",
     children: <>
       <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
       </p> 
       <p> 
         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1715,7 +1715,7 @@ const roles: Roles[] = [
     date: "January 2020 - June 2020",
     children: <>
       <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
       </p> 
       <p> 
         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1729,7 +1729,7 @@ const roles: Roles[] = [
     date: "May 2019 - December 2019",
     children: <>
       <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
       </p> 
       <p> 
         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1743,7 +1743,7 @@ const roles: Roles[] = [
     date: "August 2018 - May 2019",
     children: <>
       <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
       </p> 
       <p> 
         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -1755,6 +1755,6 @@ const roles: Roles[] = [
 
 const terms = ["writing code", "listening to music", "watching a film", "possibly sleeping"];
 
-const homepageText = <>Hi, I'm Fran. As you read this, I am <TextCarousel terms={terms} color={"hsl(212deg 90% 64%)"}/> in <del>London</del> Bologna, Italy.</>
+const homepageText = <>Hi, I"m Fran. As you read this, I am <TextCarousel terms={terms} color={"hsl(212deg 90% 64%)"}/> in <del>London</del> Bologna, Italy.</>
 
 export {shaders, p5, roles, terms, homepageText, aboutPageContent}
