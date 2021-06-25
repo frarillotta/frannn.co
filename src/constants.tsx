@@ -1750,6 +1750,6 @@ const roles: Roles[] = [
 
 const terms = ["writing code", "listening to music", "watching a film", "possibly sleeping"];
 
-const homepageText = <>Hi, I"m Fran. As you read this, I am <TextCarousel terms={terms} color={"hsl(212deg 90% 64%)"}/> in <del>London</del> Bologna, Italy.</>
+const homepageText = <>Hi, I'm Fran. As you read this, I am <TextCarousel terms={terms} color={"hsl(212deg 90% 64%)"}/> in <del>London</del> Bologna, Italy.</>
 
 export {shaders, p5, roles, terms, homepageText, aboutPageContent}

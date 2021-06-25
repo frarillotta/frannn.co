@@ -1,7 +1,7 @@
 import {p5, aboutPageContent} from "../constants";
 import dynamic from "next/dynamic";
 import {Header} from "../components/Header/Header";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
 
 //avoid SSR and do some code splitting!

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import {TextCarouselProps} from "../../types";
 
@@ -49,7 +49,7 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
     return (
         <TermWrapper 
             ref={parentEl} 
-            style={{ '--width': `${activeEl.current && activeEl.current.clientWidth}px`}} 
+            style={{ "--width": `${activeEl.current && activeEl.current.clientWidth}px`}} 
         >
             <AnimatePresence initial={false}>
                 <Term

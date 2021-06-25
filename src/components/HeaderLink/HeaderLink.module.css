@@ -20,7 +20,7 @@
 }
 
 .link::before {
-    content: '';
+    content: "";
     /* show by default */
 }
 
@@ -46,7 +46,7 @@
 }
 
 .linkDia::after {
-    content: '';
+    content: "";
     top: calc(100% + 4px);
     width: 70%;
     left: 15%;

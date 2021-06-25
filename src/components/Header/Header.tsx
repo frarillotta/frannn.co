@@ -1,6 +1,6 @@
 import {HeaderLink} from "../HeaderLink/HeaderLink";
 import {HeaderProps} from "../../types";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Header = ({variant = "black"}: HeaderProps) => {
 
@@ -29,13 +29,9 @@ const HeaderWrapper = styled.ul`
     color: var(--color);
     justify-content: space-around;
 
-@media (max-width: 500px) {
-
-    & {
+    @media (max-width: 500px) {
         flex-direction: column;
     }
-
-}
 `
 
 export {Header}
