@@ -958,8 +958,7 @@ const shaders = {
         vec2 st = gl_FragCoord.xy/u_resolution.xy;
         vec2 ratiost = ratio(st, u_resolution);
     
-    
-        float noise = fbm(vec3(ratiost, u_time/40.));
+        float noise = fbm(vec3(ratiost, u_time/120.));
         float noise2 = fbm(vec3(ratiost, noise));
         float noise3 = fbm(vec3(ratiost, noise2));
     

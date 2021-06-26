@@ -56,7 +56,7 @@ function mouseOutInEventListener(el) {
 
 function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture: string = "") {
 
-    const renderer = new THREE.WebGLRenderer({canvas});
+    const renderer = new THREE.WebGLRenderer({canvas, precision:'highp'});
     renderer.autoClearColor = false;
    
     const camera = new THREE.OrthographicCamera(
@@ -88,6 +88,7 @@ function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture
       uniforms,
     });
     scene.add(new THREE.Mesh(plane, material));
+    renderer.setPixelRatio(window.devicePixelRatio);
   
     function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;

@@ -31,6 +31,7 @@ const Container = styled(AnimationWrapper)`
 
 const Background = styled.div`
   position: fixed;
+  background: black;
   height: 100%;
   width: 100%;
 `
