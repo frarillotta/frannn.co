@@ -6,7 +6,7 @@ import {TextCarousel} from "./components/TextCarousel/TextCarousel";
 const shaders = {
   fullscreenFbm: {
     fragmentShader: `#ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     #ifndef FNC_MOD289
     #define FNC_MOD289
@@ -385,7 +385,7 @@ const shaders = {
   },
   raymarching: {
     fragmentShader: `#ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     uniform vec2 u_resolution;
@@ -596,7 +596,7 @@ const shaders = {
   },
   fbm: {
     fragmentShader: `#ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     #ifndef FNC_MOD289
     #define FNC_MOD289
@@ -976,7 +976,7 @@ const shaders = {
     fragmentShader: `// Author:
     // Title:
     
-    precision mediump float;
+    precision highp float;
     
     uniform vec2 u_resolution;
     uniform vec2 u_mouse; 
@@ -1111,7 +1111,7 @@ const shaders = {
   },
   simplexNoise: {
     fragmentShader: ` #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     uniform vec2 u_resolution;
@@ -1458,7 +1458,7 @@ const shaders = {
   },
   sun: {
     fragmentShader: `#ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     
@@ -1467,7 +1467,7 @@ const shaders = {
     uniform float u_time;
     
     #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     #ifndef FNC_STROKE
@@ -1480,7 +1480,7 @@ const shaders = {
     
     #endif
     #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     #ifndef FNC_CIRCLESDF
@@ -1494,7 +1494,7 @@ const shaders = {
     
     #endif
     #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     #ifndef FNC_FILL
@@ -1506,7 +1506,7 @@ const shaders = {
     
     #endif
     #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     #ifndef FNC_TRISDF
@@ -1521,7 +1521,7 @@ const shaders = {
     
     #endif
     #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     #ifndef FNC_ROTATE
@@ -1535,7 +1535,7 @@ const shaders = {
     
     #endif
     #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     #ifndef FNC_POLYSDF
@@ -1561,7 +1561,7 @@ const shaders = {
     
     #endif
     #ifdef GL_ES
-    precision mediump float;
+    precision highp float;
     #endif
     
     #ifndef FNC_STARSDF
