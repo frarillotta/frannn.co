@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 const CompositeCard = ({children, subtitle, location, invert = false, title, date = "", renderEl = null}: CompositeCardProps) => {
 
-    const flexDirection = invert ? "row-reverse" : "row"
+    const flexDirection = invert ? "row" : "row-reverse"
 
     return (
         <SectionWrapper
             style={{
-                "--flexDirection": flexDirection
+                "--flex-direction": flexDirection
             }} 
         >
             <ContentWrapper>
@@ -99,7 +99,7 @@ const RenderElWrapper = styled.aside`
 const RenderEl = styled.div`
     margin: auto;
     border-radius: 10%;
-    overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 `
 
 export { CompositeCard }

@@ -1,4 +1,4 @@
-import {p5, aboutPageContent} from "../constants";
+import {aboutPageContent} from "../constants";
 import dynamic from "next/dynamic";
 import {Header} from "../components/Header/Header";
 import styled from "styled-components";
@@ -12,7 +12,7 @@ const P5Renderer = dynamic(
 
 export default function About() {
 
-    const {draw, setup, windowResized} = p5.sea;
+    const {draw, setup, windowResized} = aboutPageContent.sketch;
 
     return (
         <AnimationWrapper>
