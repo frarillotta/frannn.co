@@ -24,7 +24,7 @@ let CompositeCard = ({
             setExpanded(index)
         }
     }
-    useEffect(()=>{console.log(invert)})
+    
     return (
         <SectionWrapper
             style={{
@@ -95,24 +95,16 @@ const SectionWrapper = styled.section`
     grid-template-rows: 150px 0fr 1fr;
     grid-template-columns: 1fr 1fr;
 
-    ${(props) => {
-        console.log('sc', props.invert);
-        if (props.invert) {
-            return css`{
-                grid-template-areas: 
-                "header header "
-                "content shader"
-                "content shader";
-            }`
-        } else {
-            return css`{
-                grid-template-areas: 
-                    "header header"
-                    "shader content"
-                    "shader content";
-                }`
-        }
-    }};
+    grid-template-areas: 
+        "header header"
+        "shader content"
+        "shader content";
+    ${(props) => props.invert && css`{
+        grid-template-areas: 
+        "header header "
+        "content shader"
+        "content shader";
+    }`}
     @media (max-width: ${props => props.theme.tabletDown}) {
         grid-template-areas: 
         "header header"
