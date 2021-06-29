@@ -104,13 +104,14 @@ const SectionWrapper = styled.section`
             "shader content"
             "shader content";
     }`}
-
     @media (max-width: ${props => props.theme.tabletDown}) {
         grid-template-areas: 
-            "header header"
-            "content content"
-            "shader shader";
+        "header header"
+        "content content"
+        "shader shader";
     }
+    content: ${(props) => props.invert}
+
 `
 
 const TitleWrapper = styled(motion.header)`
