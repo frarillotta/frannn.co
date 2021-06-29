@@ -57,5 +57,4 @@ export interface Roles {
 
 export interface AnimationWrapperProps {
     children?: JSX.Element | JSX.Element[];
-    className?: string;
 }
