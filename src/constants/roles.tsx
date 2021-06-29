@@ -34,7 +34,7 @@ export const roles: Roles[] = [
       shader: <Shader shader={shaders.fullscreenFbm}/>
     }, {
       company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
-      title: "Implementation Engineer II, Market Dev",
+      title: "Implementation Engineer II",
       location: "London, United Kingdom",
       date: "January 2020 - June 2020",
       children: <>

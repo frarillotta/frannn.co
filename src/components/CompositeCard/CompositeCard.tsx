@@ -1,72 +1,129 @@
 import {CompositeCardProps} from "../../types";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 
-const CompositeCard = ({children, subtitle, location, invert = false, title, date = "", renderEl = null}: CompositeCardProps) => {
-
-    const flexDirection = invert ? "row" : "row-reverse"
-
+const CompositeCard = ({
+    children, 
+    subtitle, 
+    location, 
+    invert = false, 
+    title, 
+    date = "", 
+    renderEl = null,
+    expanded,
+    setExpanded,
+    index
+}: CompositeCardProps) => {
+    const isOpen = index === expanded;
+    const alignText = invert ?  "flex-end" : "flex-start";
+    const handleClick = () => {
+        if(isOpen) {
+            setExpanded(-1)
+        } else {
+            setExpanded(index)
+        }
+    }
     return (
         <SectionWrapper
             style={{
-                "--flex-direction": flexDirection
+                "--align-text": alignText,
             }} 
+            invert={invert}
         >
-            <ContentWrapper>
-                <TitleWrapper>
-                    <Title>
-                        {title}
-                    </Title>
-                    <Subtitle>
-                        {subtitle}
-                    </Subtitle>
-                    <Location>
-                        {location}
-                    </Location>
-                    <Date>
-                        {date}
-                    </Date>
-                </TitleWrapper>
-                <ContentText>
-                    {children}
-                </ContentText>
-            </ContentWrapper>
-            <RenderElWrapper>
-                <RenderEl>
-                    {renderEl}
-                </RenderEl>
-            </RenderElWrapper>
+            <TitleWrapper 
+                initial={false}
+                animate={{ backgroundColor: isOpen ? "#FF0088" : "#F5DF4D" }}
+                onClick={() => handleClick()}
+            >
+                <Title>
+                    {title}
+                </Title>
+                <Subtitle>
+                    {subtitle}
+                </Subtitle>
+                <Location>
+                    {location}
+                </Location>
+                <Date>
+                    {date}
+                </Date>
+            </TitleWrapper>
+            <AnimatePresence initial={false}>
+                {isOpen && <>
+                    <ContentText
+                            key="content"
+                            initial="collapsed"
+                            animate="open"
+                            exit="collapsed"
+                            variants={{
+                                open: { opacity: 1, height: "auto" },
+                                collapsed: { opacity: 0, height: 0 }
+                            }}
+                            transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        >
+                        {children}
+                    </ContentText>
+                    <RenderElWrapper
+                        key="render"
+                        initial="collapsed"
+                        animate="open"
+                        exit="collapsed"
+                        variants={{
+                            open: { opacity: 1, height: "auto" },
+                            collapsed: { opacity: 0, height: 0 }
+                        }}
+                        transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    >
+                        <RenderEl>
+                            {renderEl}
+                        </RenderEl>
+                    </RenderElWrapper>
+                </>}
+            </AnimatePresence>
         </SectionWrapper>
     )
 }
 
 const SectionWrapper = styled.section`
-    display: flex;
+    width: 100%;
     padding: 2rem;
-    flex-wrap:wrap;
-    flex-direction: var(--flex-direction);
     gap: 1rem;
+    display: grid;
+    grid-template-rows: 150px 0fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "header header "
+        "content shader"
+        "content shader";
+    ${(props) => props.invert && css`{
+        grid-template-areas: 
+            "header header"
+            "shader content"
+            "shader content";
+    }`}
+
+    @media (max-width: ${props => props.theme.tabletDown}) {
+        grid-template-areas: 
+            "header header"
+            "content content"
+            "shader shader";
+    }
 `
 
-const ContentWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: 1 1 400px;
-    gap: 2rem;
-    min-height: 250px;
+const TitleWrapper = styled(motion.header)`
     padding: 1rem;
-`
-
-const TitleWrapper = styled.div`
     display: flex;
     font-size: 1rem;
+    border-radius: 2px 30px 4px 10px;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
     justify-content: space-between;
+    align-items: var(--align-text);
+    grid-area: header;
 `
 
-const Title = styled.h2`
+const Title = styled.h1`
     font-weight: 700;
     font-size: 1.5rem;
 `
@@ -85,20 +142,27 @@ const Date = styled.h2`
     color: hsl(0deg 0% 43%);
 `
 
-const ContentText = styled.article`
-    align-self: center;
+const ContentText = styled(motion.article)`
+    align-self: end;
+    @media (max-width: ${props => props.theme.tabletDown}) { 
+        align-self: center;
+    }
     line-height: 1.5rem;
+    padding: 0 1rem;
+    grid-area: content;
 `
 
-const RenderElWrapper = styled.aside`
-    flex: 1 1 450px;
-    align-self: center;
-    padding: 1rem;
+const RenderElWrapper = styled(motion.aside)`
+    grid-area: shader;
+    @media (min-width: ${props => props.theme.tabletDown}) { 
+        grid-row: 1 / 4;
+    }
+
 `
 
 const RenderEl = styled.div`
     margin: auto;
-    border-radius: 10%;
+    border-radius: 50px 30px;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 `
 

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev ./src",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "tsc": "tsc"
   },
   "dependencies": {
     "framer-motion": "^4.1.17",

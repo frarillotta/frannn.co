@@ -25,7 +25,10 @@ export type CompositeCardProps = {
     invert: Boolean, 
     title: ReactElement<AnchorProps>, 
     date: string, 
-    renderEl: JSX.Element
+    renderEl: JSX.Element,
+    expanded: number,
+    setExpanded: Function,
+    index: number,
 };
 
 export type HeaderProps = {variant: "white"|"black"};

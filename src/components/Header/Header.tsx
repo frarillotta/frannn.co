@@ -29,7 +29,7 @@ const HeaderWrapper = styled.ul`
     color: var(--color);
     justify-content: space-around;
 
-    @media (max-width: 500px) {
+    @media (max-width: ${props => props.theme.phoneDown}) {
         flex-direction: column;
     }
 `

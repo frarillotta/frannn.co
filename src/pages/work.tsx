@@ -3,8 +3,11 @@ import {CompositeCard} from "../components/CompositeCard/CompositeCard";
 import {roles} from "../constants";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function Work() {
+
+    const [expanded, setExpanded] = useState<number>(-1)
 
     return (
         <AnimationWrapper>
@@ -12,7 +15,10 @@ export default function Work() {
             <Main>
                 {roles.map((role, index)=>{
                     return <CompositeCard 
+                        expanded={expanded}
+                        setExpanded={setExpanded}
                         key={role.title}
+                        index={index}
                         invert={index % 2 === 0}
                         title={role.company}
                         location={role.location}
@@ -34,17 +40,17 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     margin: auto;
-    gap: 6rem;
+    gap: 4rem;
     max-width: 80vw;
 
-@media (max-width: 500px) {
+@media (max-width: ${props => props.theme.phoneDown}) {
 
     & {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: auto;
-        gap: 6rem;
+        gap: 2rem;
         max-width: none;
     }
 
