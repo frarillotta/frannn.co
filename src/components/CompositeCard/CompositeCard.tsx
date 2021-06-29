@@ -16,7 +16,7 @@ let CompositeCard = ({
     index
 }: CompositeCardProps) => {
     const isOpen = expanded;
-    const alignText = invert ?  "flex-end" : "flex-start";
+    const alignText = invert ? "flex-start" : "flex-end";
     const handleClick = () => {
         if(isOpen) {
             setExpanded(-1)
@@ -94,16 +94,20 @@ const SectionWrapper = styled.section`
     display: grid;
     grid-template-rows: 150px 0fr 1fr;
     grid-template-columns: 1fr 1fr;
+
     grid-template-areas: 
-        "header header "
-        "content shader"
-        "content shader";
-    ${(props) => props.invert && css`{
-        grid-template-areas: 
-            "header header"
-            "shader content"
-            "shader content";
-    }`}
+        "header header"
+        "shader content"
+        "shader content";
+    ${(props) => {
+        console.log('sc', props.invert);
+        if (props.invert) return css`{
+            grid-template-areas: 
+            "header header "
+            "content shader"
+            "content shader";
+        }`
+    }};
     @media (max-width: ${props => props.theme.tabletDown}) {
         grid-template-areas: 
         "header header"
@@ -115,10 +119,10 @@ const SectionWrapper = styled.section`
 `
 
 const TitleWrapper = styled(motion.header)`
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     display: flex;
     font-size: 1rem;
-    border-radius: 2px 30px 4px 10px;
+    border-radius: 30px 30px 4px 10px;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
@@ -166,7 +170,7 @@ const RenderElWrapper = styled(motion.aside)`
 
 const RenderEl = styled.div`
     margin: auto;
-    border-radius: 50px 30px;
+    border-radius: 30px;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 `
 
