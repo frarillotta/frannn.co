@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { AnimationWrapperProps } from "../../types";
-const AnimationWrapper = ({className, children, ...delegate}: AnimationWrapperProps) => {
+const AnimationWrapper = ({children, ...delegate}: AnimationWrapperProps) => {
     return <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

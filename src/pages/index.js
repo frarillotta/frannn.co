@@ -24,15 +24,15 @@ export default function Home() {
 }
 
 const Container = styled(AnimationWrapper)`
-  display: flex;
-  position: relative;
-  flex-direction: column;
+  height: 55vh;
+  background: black;
 `
 
 const Background = styled.div`
   position: fixed;
-  background: black;
-  height: 100%;
+  bottom: 0px;
+  position: absolute;
+  height: 50%;
   width: 100%;
 `
 const Main = styled.main`
