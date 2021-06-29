@@ -1,8 +1,9 @@
 import {CompositeCardProps} from "../../types";
 import styled, {css} from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
+import { memo, useEffect } from "react";
 
-const CompositeCard = ({
+let CompositeCard = ({
     children, 
     subtitle, 
     location, 
@@ -14,7 +15,7 @@ const CompositeCard = ({
     setExpanded,
     index
 }: CompositeCardProps) => {
-    const isOpen = index === expanded;
+    const isOpen = expanded;
     const alignText = invert ?  "flex-end" : "flex-start";
     const handleClick = () => {
         if(isOpen) {
@@ -23,6 +24,7 @@ const CompositeCard = ({
             setExpanded(index)
         }
     }
+    useEffect(()=>{console.log(invert)})
     return (
         <SectionWrapper
             style={{
@@ -83,6 +85,7 @@ const CompositeCard = ({
         </SectionWrapper>
     )
 }
+CompositeCard = memo(CompositeCard);
 
 const SectionWrapper = styled.section`
     width: 100%;

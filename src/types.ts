@@ -26,7 +26,7 @@ export type CompositeCardProps = {
     title: ReactElement<AnchorProps>, 
     date: string, 
     renderEl: JSX.Element,
-    expanded: number,
+    expanded: boolean,
     setExpanded: Function,
     index: number,
 };

@@ -15,7 +15,7 @@ export default function Work() {
             <Main>
                 {roles.map((role, index)=>{
                     return <CompositeCard 
-                        expanded={expanded}
+                        expanded={expanded === index}
                         setExpanded={setExpanded}
                         key={role.title}
                         index={index}
@@ -25,7 +25,7 @@ export default function Work() {
                         subtitle={role.title}
                         date={role.date}
                         renderEl={role.shader}
-                    >            
+                    >
                         {role.children}
                     </CompositeCard>
                 })}
