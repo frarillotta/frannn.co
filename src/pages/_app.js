@@ -1,6 +1,4 @@
 import "../styles/globals.css";
-import Head from "next/head";
-import Image from "next/image";
 import {Cursor} from "../components/Cursor/Cursor";
 import {cursorTracker} from "../utils";
 import { useEffect } from "react";
@@ -15,10 +13,7 @@ function MyApp({ Component, pageProps }) {
   }, [])
   return (
     <>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head> 
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence exitBeforeEnter>
         <ThemeProvider theme={theme}>
           <Component {...pageProps} key={router.route} />
           <Cursor/>

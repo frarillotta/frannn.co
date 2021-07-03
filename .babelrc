@@ -6,7 +6,7 @@
       [
         "babel-plugin-styled-components", // <- you must: npm install -D babel-plugin-styled-components
         {
-          "ssr": false,
+          "ssr": true,
           "minify": true,
           "transpileTemplateLiterals": true,
           "pure": true,

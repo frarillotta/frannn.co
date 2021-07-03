@@ -3,22 +3,16 @@ import {CompositeCard} from "../components/CompositeCard/CompositeCard";
 import {roles} from "../constants";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
 import styled from "styled-components";
-import { useState } from "react";
 
 export default function Work() {
-
-    const [expanded, setExpanded] = useState<number>(-1)
 
     return (
         <AnimationWrapper>
             <Header variant={"black"}/>
             <Main>
                 {roles.map((role, index)=>{
-                    return <CompositeCard 
-                        expanded={expanded === index}
-                        setExpanded={setExpanded}
+                    return <CompositeCard
                         key={role.title}
-                        index={index}
                         invert={index % 2 === 0}
                         title={role.company}
                         location={role.location}

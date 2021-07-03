@@ -1,7 +1,7 @@
 import {CompositeCardProps} from "../../types";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { memo, useEffect } from "react";
+import { memo, useState, useMemo } from "react";
 
 let CompositeCard = ({
     children, 
@@ -10,30 +10,35 @@ let CompositeCard = ({
     invert = false, 
     title, 
     date = "", 
-    renderEl = null,
-    expanded,
-    setExpanded,
-    index
+    renderEl = null
 }: CompositeCardProps) => {
-    const isOpen = expanded;
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const alignText = invert ? "flex-start" : "flex-end";
+
+    const gridTemplate = useMemo(() => invert ? 
+        `"header header"
+        "content shader"
+        "content shader";` 
+        :
+        `"header header"
+        "shader content"
+        "shader content";`,
+    [invert]);
     const handleClick = () => {
-        if(isOpen) {
-            setExpanded(-1)
-        } else {
-            setExpanded(index)
-        }
+        setIsOpen(!isOpen);
     }
-    
+
     return (
         <SectionWrapper
             style={{
-                "--align-text": alignText,
+                "--align-text": alignText
             }} 
+            gridTemplate={gridTemplate}
             invert={invert}
         >
             <TitleWrapper 
                 initial={false}
+                //TODO definitely figure out thes efucking colors
                 animate={{ backgroundColor: isOpen ? "#FF0088" : "#F5DF4D" }}
                 onClick={() => handleClick()}
             >
@@ -94,32 +99,20 @@ const SectionWrapper = styled.section`
     display: grid;
     grid-template-rows: 150px 0fr 1fr;
     grid-template-columns: 1fr 1fr;
-
-    grid-template-areas: 
-        "header header"
-        "shader content"
-        "shader content";
-    ${(props) => props.invert && css`{
-        grid-template-areas: 
-        "header header "
-        "content shader"
-        "content shader";
-    }`}
+    grid-template-areas: ${props => props.gridTemplate};
     @media (max-width: ${props => props.theme.tabletDown}) {
         grid-template-areas: 
         "header header"
         "content content"
         "shader shader";
-    }
-    content: ${(props) => props.invert}
-
+    };
 `
 
 const TitleWrapper = styled(motion.header)`
     padding: 1rem 1.5rem;
     display: flex;
     font-size: 1rem;
-    border-radius: 30px 30px 4px 10px;
+    border-radius: 30px 30px 10px 10px;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
@@ -148,7 +141,9 @@ const Date = styled.h2`
 `
 
 const ContentText = styled(motion.article)`
+    font-family: 'Merriweather', serif;
     align-self: end;
+    text-rendering: optimizeLegibility;
     @media (max-width: ${props => props.theme.tabletDown}) { 
         align-self: center;
     }

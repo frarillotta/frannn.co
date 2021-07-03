@@ -8,9 +8,6 @@ export default function Home() {
 
   return (
     <Container>
-      <Background>
-          <Shader shader={shaders.fbm}/>
-      </Background>
       <Header variant={"white"}/>
       <Main>
         <Spacer>
@@ -19,26 +16,28 @@ export default function Home() {
            {homepageText}
         </Article>
       </Main>
+      <Background>
+          <Shader shader={shaders.fbm}/>
+      </Background>
     </Container>
   )
 }
 
 const Container = styled(AnimationWrapper)`
-  height: 55vh;
+  height: 100vh;
   background: black;
 `
 
 const Background = styled.div`
-  position: fixed;
   bottom: 0px;
   position: absolute;
-  height: 50%;
+  height: 50vh;
   width: 100%;
 `
 const Main = styled.main`
   display: flex;
   position: relative;
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
   align-self: center;
   flex-direction: column;
