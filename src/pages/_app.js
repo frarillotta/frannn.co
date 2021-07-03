@@ -17,8 +17,8 @@ function MyApp({ Component, pageProps }) {
         <AnimatePresence exitBeforeEnter>
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
+        <Cursor/>
       </ThemeProvider>
-      <Cursor/>
     </>
   )
 }
