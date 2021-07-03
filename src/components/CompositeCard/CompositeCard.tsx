@@ -142,6 +142,7 @@ const Date = styled.h2`
 
 const ContentText = styled(motion.article)`
     font-family: 'Merriweather', serif;
+    font-size: 1rem;
     align-self: end;
     text-rendering: optimizeLegibility;
     @media (max-width: ${props => props.theme.tabletDown}) { 

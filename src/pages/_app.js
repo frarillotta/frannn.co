@@ -13,12 +13,12 @@ function MyApp({ Component, pageProps }) {
   }, [])
   return (
     <>
-      <AnimatePresence exitBeforeEnter>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <AnimatePresence exitBeforeEnter>
           <Component {...pageProps} key={router.route} />
-          <Cursor/>
-        </ThemeProvider>
-      </AnimatePresence>
+        </AnimatePresence>
+      </ThemeProvider>
+      <Cursor/>
     </>
   )
 }

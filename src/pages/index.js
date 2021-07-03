@@ -9,16 +9,14 @@ export default function Home() {
   return (
     <Container>
       <Header variant={"white"}/>
+      <Background>
+          <Shader shader={shaders.fbm}/>
+      </Background>
       <Main>
-        <Spacer>
-        </Spacer>
         <Article>
            {homepageText}
         </Article>
       </Main>
-      <Background>
-          <Shader shader={shaders.fbm}/>
-      </Background>
     </Container>
   )
 }
@@ -37,19 +35,12 @@ const Background = styled.div`
 const Main = styled.main`
   display: flex;
   position: relative;
-  /* height: 100%; */
+  margin-top: max(15%, 3rem);
   width: 100%;
   align-self: center;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-`
-const Spacer = styled.div`
-  padding: 3rem;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 3rem;
 `
 
 const Article = styled.article`
