@@ -23,7 +23,7 @@ export type CompositeCardProps = {
     subtitle: string, 
     location: string,
     invert: Boolean, 
-    title: ReactElement<AnchorProps>, 
+    title: string, 
     date: string, 
     renderEl: JSX.Element,
 };
