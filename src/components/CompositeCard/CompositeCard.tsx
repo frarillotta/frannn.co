@@ -1,10 +1,12 @@
 import {CompositeCardProps} from "../../types";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { memo, useState, useMemo } from "react";
+import { memo, useState, useMemo, useEffect, useRef } from "react";
+import {mouseOutInEventListener} from "../../utils";
+import { ExpandLessSVG } from "../SVG"
 
 let CompositeCard = ({
-    children, 
+    children,
     subtitle, 
     location, 
     invert = false, 
@@ -13,7 +15,8 @@ let CompositeCard = ({
     renderEl = null
 }: CompositeCardProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const alignText = invert ? "flex-start" : "flex-end";
+    const alignText = invert ? "row" : "row-reverse";
+    const itemsAlignment = invert ? "flex-start" : "flex-end";
 
     const gridTemplate = useMemo(() => invert ? 
         `"header header"
@@ -36,25 +39,28 @@ let CompositeCard = ({
             gridTemplate={gridTemplate}
             invert={invert}
         >
-            <TitleWrapper 
-                initial={false}
-                //TODO definitely figure out thes efucking colors
-                animate={{ backgroundColor: isOpen ? "#FF0088" : "#F5DF4D" }}
-                onClick={() => handleClick()}
+            <CompositeCardHeader
+                handleClick={handleClick}
+                isOpen={isOpen}
             >
-                <Title>
-                    {title}
-                </Title>
-                <Subtitle>
-                    {subtitle}
-                </Subtitle>
-                <Location>
-                    {location}
-                </Location>
-                <Date>
-                    {date}
-                </Date>
-            </TitleWrapper>
+                <DetailsWrapper style={{
+                    "--items-alignment": itemsAlignment
+                }}>
+                    <Title>
+                        {title}
+                    </Title>
+                    <Subtitle>
+                        {subtitle}
+                    </Subtitle>
+                    <Location>
+                        {location}
+                    </Location>
+                    <Date>
+                        {date}
+                    </Date>
+                </DetailsWrapper>
+                <Expand isOpen={isOpen}/>
+            </CompositeCardHeader>
             <AnimatePresence initial={false}>
                 {isOpen && <>
                     <ContentText
@@ -90,7 +96,49 @@ let CompositeCard = ({
         </SectionWrapper>
     )
 }
+
+const CompositeCardHeader = ({handleClick, isOpen, children}) => {
+    const ref = useRef();
+
+    useEffect(()=>{
+        const el = ref.current;
+        const eventsCleanup = mouseOutInEventListener(el);
+
+        return eventsCleanup;
+    }, [])
+
+    return <TitleWrapper 
+        ref={ref}
+        initial={false}
+        //TODO definitely figure out thes efucking colors
+        animate={{ backgroundColor: isOpen ? "#FF0088" : "#F5DF4D" }}
+        onClick={() => handleClick()}
+    >
+        {children}
+    </TitleWrapper>
+}
+
+const Expand = ({isOpen}: {isOpen: boolean}) => {
+
+    return <ExpandSVGWrapper 
+        animate={{ 
+            rotate: isOpen ? 360 : 180
+        }}
+
+        transition={{duration: .5}}
+        >
+        <ExpandLessSVG/>
+    </ExpandSVGWrapper>
+}
+
 CompositeCard = memo(CompositeCard);
+
+const ExpandSVGWrapper = styled(motion.div)`
+    display: none;
+    @media (max-width: ${props => props.theme.tabletDown}) {
+        display: block
+    }
+`
 
 const SectionWrapper = styled.section`
     width: 100%;
@@ -108,16 +156,22 @@ const SectionWrapper = styled.section`
     };
 `
 
+const DetailsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: var(--items-alignment);
+    gap: 1rem;
+`
+
 const TitleWrapper = styled(motion.header)`
     padding: 1rem 1.5rem;
+    justify-content: space-between;
     display: flex;
     font-size: 1rem;
     border-radius: 30px 30px 10px 10px;
-    flex-direction: column;
-    gap: 1rem;
     width: 100%;
-    justify-content: space-between;
-    align-items: var(--align-text);
+    flex-direction: var(--align-text);
+    align-items: center;
     grid-area: header;
 `
 

@@ -43,7 +43,7 @@ export type P5Props =  {
 
 export interface Roles {
 
-    company: ReactElement<AnchorProps>;
+    company: string;
     title: string;
     date: string;
     location: string;

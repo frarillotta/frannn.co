@@ -48,8 +48,7 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
 
     return (
         <TermWrapper 
-            ref={parentEl} 
-            style={{ "--width": `${activeEl.current && activeEl.current.clientWidth}px`}} 
+            ref={parentEl}
         >
             <AnimatePresence initial={false}>
                 <Term
@@ -75,7 +74,6 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
 }
 
 const TermWrapper = styled.span`
-    width: var(--width);
     position: relative;
     display: inline-block;
     width: 100px;
