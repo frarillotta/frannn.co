@@ -22,7 +22,7 @@ export default function Home() {
 }
 
 const Container = styled(AnimationWrapper)`
-  height: 100vh;
+  height: 80vh;
   background: black;
 `
 
