@@ -118,12 +118,8 @@ function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture
     requestAnimationFrame(render);
 
     return () => {
-      plane.dispose();
-      if (tex) {
-        tex?.dispose();
-      }
-      material.dispose();
-      renderer.dispose();
+      const context = canvas.getContext('webgl2')
+      context?.getExtension('WEBGL_lose_context').loseContext();
     }
 
 }

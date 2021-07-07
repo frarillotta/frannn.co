@@ -20,7 +20,6 @@ const Shader = ({shader, isVisible}: ThreeFragShaderProps) => {
     
     return () => {
       //prevent webgl contexts from stacking up cause JS garbage collection suuuuuuucks
-      canvas.current?.remove();
       cleanup();
     }
 

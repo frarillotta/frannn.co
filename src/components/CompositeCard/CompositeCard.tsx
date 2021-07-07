@@ -21,7 +21,7 @@ let CompositeCard = ({
     const el = useRef<Element>();
 
     const isMobile = useIsMobile();
-    const threshold = useMemo(() => isMobile ? 0.4 : 0.66, [isMobile]);
+    const threshold = useMemo(() => isMobile ? 0.3 : 0.5, [isMobile]);
     const isVisible = useIsVisible(el, threshold);
 
     const gridTemplate = useMemo(() => invert ? 
