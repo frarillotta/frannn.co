@@ -34,8 +34,11 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     margin: auto;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
     gap: 4rem;
     max-width: 80vw;
+    overflow-x: hidden;
 
 @media (max-width: ${props => props.theme.phoneDown}) {
 
@@ -45,6 +48,7 @@ const Main = styled.main`
         align-items: center;
         margin: auto;
         gap: 2rem;
+        margin-bottom: 2rem;
         max-width: none;
     }
 

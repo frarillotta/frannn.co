@@ -5,7 +5,8 @@ export type ThreeFragShaderProps = {
     shader: {
         fragmentShader: string,
         texture?: string
-    }
+    },
+    isVisible?: boolean;
 };
 
 export type AnchorProps = {

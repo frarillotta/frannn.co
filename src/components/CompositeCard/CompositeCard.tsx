@@ -1,9 +1,10 @@
 import {CompositeCardProps} from "../../types";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { memo, useState, useMemo, useEffect, useRef } from "react";
+import { memo, useState, useMemo, useEffect, useRef, cloneElement } from "react";
 import {mouseOutInEventListener} from "../../utils";
 import { ExpandLessSVG } from "../SVG"
+import { useIsVisible, useIsMobile } from "../../hooks";
 
 let CompositeCard = ({
     children,
@@ -14,9 +15,14 @@ let CompositeCard = ({
     date = "", 
     renderEl = null
 }: CompositeCardProps) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
     const alignText = invert ? "row" : "row-reverse";
     const itemsAlignment = invert ? "flex-start" : "flex-end";
+
+    const el = useRef<Element>();
+
+    const isMobile = useIsMobile();
+    const threshold = useMemo(() => isMobile ? 0.4 : 0.66, [isMobile]);
+    const isVisible = useIsVisible(el, threshold);
 
     const gridTemplate = useMemo(() => invert ? 
         `"header header"
@@ -27,77 +33,54 @@ let CompositeCard = ({
         "shader content"
         "shader content";`,
     [invert]);
-    const handleClick = () => {
-        setIsOpen(!isOpen);
-    }
 
     return (
-        <SectionWrapper
-            style={{
-                "--align-text": alignText
-            }} 
-            gridTemplate={gridTemplate}
-            invert={invert}
-        >
-            <CompositeCardHeader
-                handleClick={handleClick}
-                isOpen={isOpen}
+        <AnimatePresence initial={true}>
+            <SectionWrapper
+                ref={el}
+                style={{
+                    "--align-text": alignText
+                }} 
+                gridTemplate={gridTemplate}
+                invert={invert}
+                animate={{
+                    opacity: isVisible ? 1 : 0,
+                    translateX: isVisible ? 0 : 100,
+                }}
+                transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
             >
-                <DetailsWrapper style={{
-                    "--items-alignment": itemsAlignment
-                }}>
-                    <Title>
-                        {title}
-                    </Title>
-                    <Subtitle>
-                        {subtitle}
-                    </Subtitle>
-                    <Location>
-                        {location}
-                    </Location>
-                    <Date>
-                        {date}
-                    </Date>
-                </DetailsWrapper>
-                <Expand isOpen={isOpen}/>
-            </CompositeCardHeader>
-            <AnimatePresence initial={false}>
-                {isOpen && <>
-                    <ContentText
-                            key="content"
-                            initial="collapsed"
-                            animate="open"
-                            exit="collapsed"
-                            variants={{
-                                open: { opacity: 1, height: "auto" },
-                                collapsed: { opacity: 0, height: 0 }
-                            }}
-                            transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
-                        >
+                <CompositeCardHeader>
+                    <DetailsWrapper style={{
+                        "--items-alignment": itemsAlignment
+                    }}>
+                        <Title>
+                            {title}
+                        </Title>
+                        <Subtitle>
+                            {subtitle}
+                        </Subtitle>
+                        <Location>
+                            {location}
+                        </Location>
+                        <Date>
+                            {date}
+                        </Date>
+                    </DetailsWrapper>
+                </CompositeCardHeader>
+                    <ContentText>
                         {children}
                     </ContentText>
-                    <RenderElWrapper
-                        key="render"
-                        initial="collapsed"
-                        animate="open"
-                        exit="collapsed"
-                        variants={{
-                            open: { opacity: 1, height: "auto" },
-                            collapsed: { opacity: 0, height: 0 }
-                        }}
-                        transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    >
-                        <RenderEl>
+                    <RenderElWrapper>
+                        {isVisible && <RenderEl>
                             {renderEl}
-                        </RenderEl>
+                        </RenderEl>}
                     </RenderElWrapper>
-                </>}
-            </AnimatePresence>
-        </SectionWrapper>
+            </SectionWrapper>
+        </AnimatePresence>
     )
 }
 
-const CompositeCardHeader = ({handleClick, isOpen, children}) => {
+const CompositeCardHeader = ({children}) => {
     const ref = useRef();
 
     useEffect(()=>{
@@ -109,40 +92,16 @@ const CompositeCardHeader = ({handleClick, isOpen, children}) => {
 
     return <TitleWrapper 
         ref={ref}
-        initial={false}
-        //TODO definitely figure out thes efucking colors
-        animate={{ backgroundColor: isOpen ? "#FF0088" : "#F5DF4D" }}
-        onClick={() => handleClick()}
     >
         {children}
     </TitleWrapper>
 }
 
-const Expand = ({isOpen}: {isOpen: boolean}) => {
-
-    return <ExpandSVGWrapper 
-        animate={{ 
-            rotate: isOpen ? 360 : 180
-        }}
-
-        transition={{duration: .5}}
-        >
-        <ExpandLessSVG/>
-    </ExpandSVGWrapper>
-}
-
 CompositeCard = memo(CompositeCard);
 
-const ExpandSVGWrapper = styled(motion.div)`
-    display: none;
-    @media (max-width: ${props => props.theme.tabletDown}) {
-        display: block
-    }
-`
-
-const SectionWrapper = styled.section`
+const SectionWrapper = styled(motion.section)`
     width: 100%;
-    padding: 2rem;
+    padding: 1rem;
     gap: 1rem;
     display: grid;
     grid-template-rows: 150px 0fr 1fr;
@@ -163,7 +122,7 @@ const DetailsWrapper = styled.div`
     gap: 1rem;
 `
 
-const TitleWrapper = styled(motion.header)`
+const TitleWrapper = styled.header`
     padding: 1rem 1.5rem;
     justify-content: space-between;
     display: flex;
@@ -171,6 +130,7 @@ const TitleWrapper = styled(motion.header)`
     border-radius: 30px 30px 10px 10px;
     width: 100%;
     flex-direction: var(--align-text);
+    background-color: #F5DF4D;
     align-items: center;
     grid-area: header;
 `
@@ -194,7 +154,7 @@ const Date = styled.h2`
     color: hsl(0deg 0% 43%);
 `
 
-const ContentText = styled(motion.article)`
+const ContentText = styled.article`
     font-family: 'Merriweather', serif;
     font-size: 1rem;
     align-self: end;
@@ -207,8 +167,11 @@ const ContentText = styled(motion.article)`
     grid-area: content;
 `
 
-const RenderElWrapper = styled(motion.aside)`
+const RenderElWrapper = styled.aside`
     grid-area: shader;
+    padding-top: 100%;
+    position: relative;
+    width: 100%;
     @media (min-width: ${props => props.theme.tabletDown}) { 
         grid-row: 1 / 4;
     }
@@ -217,6 +180,11 @@ const RenderElWrapper = styled(motion.aside)`
 
 const RenderEl = styled.div`
     margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     border-radius: 30px;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
 `

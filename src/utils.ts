@@ -70,11 +70,11 @@ function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture
 
     const scene = new THREE.Scene();
     const plane = new THREE.PlaneGeometry(2, 2);
-    let tex = null;
+    let textureLoader = null;
+    let tex = textureLoader?.load(texture);;
 
     if (texture) {
-      const textureLoader = new THREE.TextureLoader();
-      tex = textureLoader.load(texture);
+      textureLoader = new THREE.TextureLoader();
     }
   
     const uniforms = {
@@ -111,11 +111,20 @@ function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture
       uniforms.u_time.value = time;
   
       renderer.render(scene, camera);
-  
+
       requestAnimationFrame(render);
     }
   
     requestAnimationFrame(render);
+
+    return () => {
+      plane.dispose();
+      if (tex) {
+        tex?.dispose();
+      }
+      material.dispose();
+      renderer.dispose();
+    }
 
 }
 
