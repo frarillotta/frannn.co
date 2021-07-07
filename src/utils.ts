@@ -70,11 +70,11 @@ function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture
 
     const scene = new THREE.Scene();
     const plane = new THREE.PlaneGeometry(2, 2);
-    let textureLoader = null;
-    let tex = textureLoader?.load(texture);;
+    let tex = null;
 
     if (texture) {
-      textureLoader = new THREE.TextureLoader();
+      const textureLoader = new THREE.TextureLoader();
+      tex = textureLoader.load(texture);
     }
   
     const uniforms = {

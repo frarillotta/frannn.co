@@ -19,10 +19,37 @@ let CompositeCard = ({
     const itemsAlignment = invert ? "flex-start" : "flex-end";
 
     const el = useRef<Element>();
+    const [safeToRemove, setSafeToRemove] = useState(false);
 
     const isMobile = useIsMobile();
     const threshold = useMemo(() => isMobile ? 0.3 : 0.63, [isMobile]);
     const isVisible = useIsVisible(el, threshold);
+
+    const timeout = useRef(null);
+
+    useEffect(()=>{
+        if (isVisible === false) {
+
+            timeout.current = setTimeout(()=>{
+                setSafeToRemove(true);
+            }, 1200)
+
+        } else {
+
+            if (timeout.current) {
+                clearTimeout(timeout.current);
+            }
+            setSafeToRemove(false);
+
+        }
+
+        return () => {
+
+            if (timeout.current) clearTimeout(timeout.current);
+
+        }
+
+    }, [isVisible])
 
     const gridTemplate = useMemo(() => invert ? 
         `"header header"
@@ -71,7 +98,7 @@ let CompositeCard = ({
                         {children}
                     </ContentText>
                     <RenderElWrapper>
-                        {isVisible && <RenderEl>
+                        {!safeToRemove && <RenderEl>
                             {renderEl}
                         </RenderEl>}
                     </RenderElWrapper>
