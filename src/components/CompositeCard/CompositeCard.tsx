@@ -1,9 +1,8 @@
 import {CompositeCardProps} from "../../types";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { memo, useState, useMemo, useEffect, useRef, cloneElement } from "react";
+import { memo, useState, useMemo, useEffect, useRef } from "react";
 import {mouseOutInEventListener} from "../../utils";
-import { ExpandLessSVG } from "../SVG"
 import { useIsVisible, useIsMobile } from "../../hooks";
 
 let CompositeCard = ({

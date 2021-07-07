@@ -36,7 +36,7 @@ const Main = styled.main`
     margin: auto;
     margin-bottom: 4rem;
     margin-top: 4rem;
-    gap: 4rem;
+    gap: 6rem;
     max-width: 80vw;
     overflow-x: hidden;
 
