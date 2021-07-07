@@ -21,7 +21,7 @@ let CompositeCard = ({
     const el = useRef<Element>();
 
     const isMobile = useIsMobile();
-    const threshold = useMemo(() => isMobile ? 0.3 : 0.5, [isMobile]);
+    const threshold = useMemo(() => isMobile ? 0.3 : 0.63, [isMobile]);
     const isVisible = useIsVisible(el, threshold);
 
     const gridTemplate = useMemo(() => invert ? 
@@ -45,9 +45,9 @@ let CompositeCard = ({
                 invert={invert}
                 animate={{
                     opacity: isVisible ? 1 : 0,
-                    translateX: isVisible ? 0 : 100,
+                    translateX: isVisible ? 0 : invert ? 100 : -100,
                 }}
-                transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
+                transition={{ duration: 1.2, ease: [0.04, 0.24, 0.62, 0.98] }}
             >
                 <CompositeCardHeader>
                     <DetailsWrapper style={{
