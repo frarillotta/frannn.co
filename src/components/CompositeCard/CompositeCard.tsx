@@ -1,9 +1,9 @@
 import {CompositeCardProps} from "../../types";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { memo, useState, useMemo, useEffect, useRef } from "react";
+import { memo, useMemo, useRef } from "react";
 import {mouseOutInEventListener} from "../../utils";
-import { useIsVisible, useIsMobile } from "../../hooks";
+import { useIsVisible, useIsMobile, useSafeToRemove } from "../../hooks";
 
 let CompositeCard = ({
     children,
@@ -18,37 +18,12 @@ let CompositeCard = ({
     const itemsAlignment = invert ? "flex-start" : "flex-end";
 
     const el = useRef<Element>();
-    const [safeToRemove, setSafeToRemove] = useState(false);
 
     const isMobile = useIsMobile();
     const threshold = useMemo(() => isMobile ? 0.3 : 0.63, [isMobile]);
     const isVisible = useIsVisible(el, threshold);
 
-    const timeout = useRef(null);
-
-    useEffect(()=>{
-        if (isVisible === false) {
-
-            timeout.current = setTimeout(()=>{
-                setSafeToRemove(true);
-            }, 1200)
-
-        } else {
-
-            if (timeout.current) {
-                clearTimeout(timeout.current);
-            }
-            setSafeToRemove(false);
-
-        }
-
-        return () => {
-
-            if (timeout.current) clearTimeout(timeout.current);
-
-        }
-
-    }, [isVisible])
+    const safeToRemove = useSafeToRemove(isVisible);
 
     const gridTemplate = useMemo(() => invert ? 
         `"header header"
@@ -75,7 +50,7 @@ let CompositeCard = ({
                 }}
                 transition={{ duration: 1.2, ease: [0.04, 0.24, 0.62, 0.98] }}
             >
-                <CompositeCardHeader>
+                <TitleWrapper>
                     <DetailsWrapper style={{
                         "--items-alignment": itemsAlignment
                     }}>
@@ -92,7 +67,7 @@ let CompositeCard = ({
                             {date}
                         </Date>
                     </DetailsWrapper>
-                </CompositeCardHeader>
+                </TitleWrapper>
                     <ContentText>
                         {children}
                     </ContentText>
@@ -104,23 +79,6 @@ let CompositeCard = ({
             </SectionWrapper>
         </AnimatePresence>
     )
-}
-
-const CompositeCardHeader = ({children}) => {
-    const ref = useRef();
-
-    useEffect(()=>{
-        const el = ref.current;
-        const eventsCleanup = mouseOutInEventListener(el);
-
-        return eventsCleanup;
-    }, [])
-
-    return <TitleWrapper 
-        ref={ref}
-    >
-        {children}
-    </TitleWrapper>
 }
 
 CompositeCard = memo(CompositeCard);

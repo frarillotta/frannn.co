@@ -24,7 +24,7 @@ export type CompositeCardProps = {
     subtitle: string, 
     location: string,
     invert: Boolean, 
-    title: string, 
+    title: JSX.Element, 
     date: string, 
     renderEl: JSX.Element,
 };
@@ -44,7 +44,7 @@ export type P5Props =  {
 
 export interface Roles {
 
-    company: string;
+    company: JSX.Element;
     title: string;
     date: string;
     location: string;

@@ -295,7 +295,6 @@ vec3 snoise3( vec4 x ){
 
 
 uniform vec2 u_resolution;
-uniform vec2 u_mouse; 
 uniform float u_time;
 vec2 ratio(in vec2 st, in vec2 s) {
     return mix( vec2((st.x*s.x/s.y)-(s.x*.5-s.y*.5)/s.y,st.y),

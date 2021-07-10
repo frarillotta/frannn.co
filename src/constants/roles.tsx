@@ -1,10 +1,11 @@
 import type {Roles} from "../types";
+import {Anchor} from "../components/Anchor/Anchor";
 import {Shader} from "../components/Shader/Shader";
 import {shaders} from "./shaders";
 
 export const roles: Roles[] = [
     {
-      company: "Yoox Net-a-Porter",
+      company: <Anchor href={"https://www.ynap.com/"}>Yoox Net-a-Porter</Anchor>,
       title: "Frontend Developer",
       location: "Bologna, Italy",
       date: "May 2021 - Present",
@@ -18,7 +19,7 @@ export const roles: Roles[] = [
       </>,  
       shader: <Shader shader={shaders.raymarching}/>
     }, {
-      company: "Sovrn",
+      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
       title: "Full-stack Software Engineer",
       location: "London, United Kingdom",
       date: "July 2020 - April 2021",
@@ -32,7 +33,7 @@ export const roles: Roles[] = [
       </>,    
       shader: <Shader shader={shaders.fullscreenFbm}/>
     }, {
-      company: "Sovrn",
+      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
       title: "Implementation Engineer II",
       location: "London, United Kingdom",
       date: "January 2020 - June 2020",
@@ -46,7 +47,7 @@ export const roles: Roles[] = [
       </>,    
       shader: <Shader shader={shaders.sun}/>
     }, {
-      company: "Sovrn",
+      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
       title: "Solutions Engineer",
       location: "London, United Kingdom",
       date: "May 2019 - December 2019",
@@ -60,7 +61,7 @@ export const roles: Roles[] = [
       </>,     
       shader: <Shader shader={shaders.ditherTexture}/>
     }, {
-      company: "Sovrn",
+      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
       title: "Operations Specialist",
       location: "London, United Kingdom",
       date: "August 2018 - May 2019",
