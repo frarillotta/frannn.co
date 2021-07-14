@@ -18,7 +18,7 @@ export default function About() {
     return (
         <AnimationWrapper>
             <PageWrapper>
-                <Header variant={"black"}/>
+                <Header style={{scrollSnapAlign: "start"}} variant={"black"}/>
                 <Main>
                     {aboutPageContent.map((content, index) => 
                         <AboutEntry key={index} text={content.text} sketch={content.sketch} index={index}/>
@@ -57,6 +57,10 @@ const AboutEntry = ({text, sketch, index}) => {
 
 }
 
+const StyledHeader = styled(Header)`
+    scroll-snap-align: start;
+`
+
 const PageWrapper = styled.div`
     height: 100vh;
     overflow-y: auto;
@@ -71,7 +75,7 @@ const Main = styled.main`
 
 const Section = styled(motion.section)`
     transform-style: preserve-3d;
-    scroll-snap-align: ${props => props.index === 0 ? "none" : "center"};
+    scroll-snap-align: center;
     display: flex;
     margin: auto;
     width: 80vw;

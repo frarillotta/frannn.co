@@ -32,7 +32,10 @@ export type CompositeCardProps = {
     shaderLink: string
 };
 
-export type HeaderProps = {variant: "white"|"black"};
+export type HeaderProps = {
+    variant: "white"|"black",
+    style: {}
+};
 
 export type TextCarouselProps = {
     terms: string[];

@@ -3,11 +3,11 @@ import {HeaderProps} from "../../types";
 import styled from "styled-components";
 import { memo } from "react";
 
-let Header = ({variant = "black"}: HeaderProps) => {
+let Header = ({variant = "black", style}: HeaderProps) => {
 
     return (
     
-        <HeaderWrapper style={{"--color": `${variant}`}}>
+        <HeaderWrapper style={{"--color": `${variant}`, ...style}}>
             <li>
                 <HeaderLink text={"Home"} href={"/"}/>
             </li>
