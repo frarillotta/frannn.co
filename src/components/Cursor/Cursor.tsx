@@ -23,7 +23,7 @@ const CursorEl = styled.div`
     transition: height .25s,width .25s,top .25s,left .25s;
     transition-timing-function: cubic-bezier(.68,-.55,.27,1.55);
 
-    @media (max-width: 500px) {
+    @media (max-width: ${props => props.theme.tabletDown}) {
 
         & {
             display: none;

@@ -5,7 +5,9 @@ import {HeaderLinkProps} from "../../types";
 
 const HeaderLink = ({href, text}: HeaderLinkProps) => {
 
-    return <span className={`${styles.link} ${styles.linkDia}`} ><Anchor href={href}>{text}</Anchor></span>
+    return <span className={`${styles.link} ${styles.linkDia}`} >
+        <Anchor href={href}>{text}</Anchor>
+    </span>
 
 }
 

@@ -1,16 +1,19 @@
-import p5Types from "p5"; 
+import p5 from "p5"; 
 import {ReactElement} from "react";
+import type { ReactNode, CSSProperties } from "react";
 
 export type ThreeFragShaderProps = {
     shader: {
         fragmentShader: string,
+        shaderLink: string,
         texture?: string
-    }
+    },
+    isVisible?: boolean;
 };
 
 export type AnchorProps = {
     href: string;
-    children: Element | string;
+    children: JSX.Element | string;
 };
 
 export type HeaderLinkProps = {
@@ -23,9 +26,10 @@ export type CompositeCardProps = {
     subtitle: string, 
     location: string,
     invert: Boolean, 
-    title: ReactElement<AnchorProps>, 
+    title: string, 
     date: string, 
-    renderEl: JSX.Element
+    renderEl: JSX.Element,
+    shaderLink: string
 };
 
 export type HeaderProps = {variant: "white"|"black"};
@@ -35,24 +39,25 @@ export type TextCarouselProps = {
     color: string;
 }
 
-export type P5Props =  {
-    setup: (p5: p5Types, canvasParentRef: Element) => void;
-    draw: (p5: p5Types) => void;
-    windowResized: (p5: p5Types) => void;
+export type P5RendererProps =  {
+    /** The p5 sketch function to be run. Must be written in p5's instance mode. */
+    sketch: (p: typeof p5) => void;
+    /** If true, the canvas will resize to window whenever the window is resized */
+    autoResizeToWindow?: boolean;
 }
 
 export interface Roles {
 
-    company: ReactElement<AnchorProps>;
+    company: string;
     title: string;
     date: string;
     location: string;
     children: JSX.Element;
-    shader: ReactElement<ThreeFragShaderProps | P5Props>;
+    shader: ReactElement<ThreeFragShaderProps | P5RendererProps>;
+    shaderLink: string
 
 }
 
 export interface AnimationWrapperProps {
     children?: JSX.Element | JSX.Element[];
-    className?: string;
 }

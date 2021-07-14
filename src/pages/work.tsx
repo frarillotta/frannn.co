@@ -11,7 +11,7 @@ export default function Work() {
             <Header variant={"black"}/>
             <Main>
                 {roles.map((role, index)=>{
-                    return <CompositeCard 
+                    return <CompositeCard
                         key={role.title}
                         invert={index % 2 === 0}
                         title={role.company}
@@ -19,7 +19,8 @@ export default function Work() {
                         subtitle={role.title}
                         date={role.date}
                         renderEl={role.shader}
-                    >            
+                        shaderLink={role.shaderLink}
+                    >
                         {role.children}
                     </CompositeCard>
                 })}
@@ -34,17 +35,21 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     margin: auto;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
     gap: 6rem;
     max-width: 80vw;
+    overflow-x: hidden;
 
-@media (max-width: 500px) {
+@media (max-width: ${props => props.theme.phoneDown}) {
 
     & {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: auto;
-        gap: 6rem;
+        gap: 2rem;
+        margin-bottom: 2rem;
         max-width: none;
     }
 

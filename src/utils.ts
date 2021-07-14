@@ -111,11 +111,16 @@ function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture
       uniforms.u_time.value = time;
   
       renderer.render(scene, camera);
-  
+
       requestAnimationFrame(render);
     }
   
     requestAnimationFrame(render);
+
+    return () => {
+      const context = canvas.getContext('webgl2')
+      context?.getExtension('WEBGL_lose_context').loseContext();
+    }
 
 }
 

@@ -1,8 +1,9 @@
 import {HeaderLink} from "../HeaderLink/HeaderLink";
 import {HeaderProps} from "../../types";
 import styled from "styled-components";
+import { memo } from "react";
 
-const Header = ({variant = "black"}: HeaderProps) => {
+let Header = ({variant = "black"}: HeaderProps) => {
 
     return (
     
@@ -19,6 +20,7 @@ const Header = ({variant = "black"}: HeaderProps) => {
         </HeaderWrapper>
     )
 }
+Header = memo(Header);
 
 const HeaderWrapper = styled.ul`
     display: flex;
@@ -29,7 +31,7 @@ const HeaderWrapper = styled.ul`
     color: var(--color);
     justify-content: space-around;
 
-    @media (max-width: 500px) {
+    @media (max-width: ${props => props.theme.phoneDown}) {
         flex-direction: column;
     }
 `

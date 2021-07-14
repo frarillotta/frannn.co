@@ -1,24 +1,29 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef } from "react";
 import {renderShader} from "../../utils";
 import {ThreeFragShaderProps} from "../../types";
 
-const Shader = ({shader}: ThreeFragShaderProps) => {
+const Shader = ({shader, isVisible}: ThreeFragShaderProps) => {
 
   const {fragmentShader, texture} = shader;
 
-  let canvas = useRef();
+  let canvas = useRef<HTMLCanvasElement>();
 
   const ref = useCallback((node)=>{
     canvas.current = node;
   }, []);
 
-  useEffect(()=>{
+  useLayoutEffect(()=>{
 
     if (!canvas.current) return;
 
-    renderShader(canvas.current, fragmentShader, texture)
+    const cleanup = renderShader(canvas.current, fragmentShader, texture);
+    
+    return () => {
+      //prevent webgl contexts from stacking up cause JS garbage collection suuuuuuucks
+      cleanup();
+    }
 
-  }, [fragmentShader, texture])
+  }, [fragmentShader, texture, isVisible])
   
   return (
     <canvas 

@@ -12,9 +12,7 @@ const Anchor = ({href, children}: AnchorProps) => {
         const el = ref.current;
         const eventsCleanup = mouseOutInEventListener(el);
 
-        return () => {
-            eventsCleanup();
-        };
+        return eventsCleanup;
 
     }, [])
 

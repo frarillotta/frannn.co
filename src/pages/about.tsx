@@ -3,55 +3,94 @@ import dynamic from "next/dynamic";
 import {Header} from "../components/Header/Header";
 import styled from "styled-components";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
+import { useIsVisible, useSafeToRemove } from "../hooks";
+import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-//avoid SSR and do some code splitting!
 const P5Renderer = dynamic(
-  () => import("../components/p5/p5"),
+  () => import("../components/p5Renderer/p5Renderer"),
   { ssr: false }
 )
 
 export default function About() {
 
-    const {draw, setup, windowResized} = aboutPageContent.sketch;
 
     return (
         <AnimationWrapper>
-            <Header variant={"black"}></Header>
-            <Main>
-                <Section>
-                    <P5El>
-                        <P5Renderer draw={draw} setup={setup} windowResized={windowResized}/>
-                    </P5El>
-                    <Text>
-                        {aboutPageContent.text}
-                    </Text>
-                </Section>
-            </Main>
+            <PageWrapper>
+                <Header variant={"black"}/>
+                <Main>
+                    {aboutPageContent.map((content, index) => 
+                        <AboutEntry key={index} text={content.text} sketch={content.sketch} index={index}/>
+                    )}
+                </Main>
+            </PageWrapper>
         </AnimationWrapper>
     )
 
 }
 
+const AboutEntry = ({text, sketch, index}) => {
+
+    const el = useRef(null);
+    const isVisible = useIsVisible(el, .75);
+    const safeToRemove = useSafeToRemove(isVisible);
+
+    return <AnimatePresence initial={false}>
+        <Section 
+            ref={el}
+            index={index}
+        >
+            <P5El
+                animate={{
+                    opacity: isVisible ? .35 : 0
+                }}
+                transition={{ duration: 1.2}}
+            >
+                {!safeToRemove && <P5Renderer sketch={sketch}/>}
+            </P5El>
+            <Text>
+                {text}
+            </Text>
+        </Section>
+    </AnimatePresence>
+
+}
+
+const PageWrapper = styled.div`
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    perspective: 1px;
+    scroll-snap-type: y proximity;
+`
+
 const Main = styled.main`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
-const Section = styled.section`
     position: relative;
-    display: flex;
-    width: 80vw;
-    height: 520px;
 `
 
-const P5El = styled.div`
+const Section = styled(motion.section)`
+    transform-style: preserve-3d;
+    scroll-snap-align: ${props => props.index === 0 ? "none" : "center"};
+    display: flex;
+    margin: auto;
+    width: 80vw;
+    height: 80vh;
+`
+
+const P5El = styled(motion.div)`
     position: absolute;
-    top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 25%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateZ(-1px) scale(1.9);
     filter: blur(3px);
     border-radius: 20%;
     opacity: .35;
-    width: 80vw;
+    width: 100%;
     overflow: hidden;
 `
 
@@ -59,7 +98,7 @@ const Text = styled.div`
     display: inline-block;
     margin: auto;
     width: auto;
-    position: relative;
+    transform: translateZ(0);
     max-width: 800px;
     line-height: 1.5rem;
     padding: 2rem;
