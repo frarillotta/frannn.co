@@ -5,6 +5,7 @@ import type { ReactNode, CSSProperties } from "react";
 export type ThreeFragShaderProps = {
     shader: {
         fragmentShader: string,
+        shaderLink: string,
         texture?: string
     },
     isVisible?: boolean;
@@ -12,7 +13,7 @@ export type ThreeFragShaderProps = {
 
 export type AnchorProps = {
     href: string;
-    children: Element | string;
+    children: JSX.Element | string;
 };
 
 export type HeaderLinkProps = {
@@ -25,9 +26,10 @@ export type CompositeCardProps = {
     subtitle: string, 
     location: string,
     invert: Boolean, 
-    title: JSX.Element, 
+    title: string, 
     date: string, 
     renderEl: JSX.Element,
+    shaderLink: string
 };
 
 export type HeaderProps = {variant: "white"|"black"};
@@ -46,12 +48,13 @@ export type P5RendererProps =  {
 
 export interface Roles {
 
-    company: JSX.Element;
+    company: string;
     title: string;
     date: string;
     location: string;
     children: JSX.Element;
     shader: ReactElement<ThreeFragShaderProps | P5RendererProps>;
+    shaderLink: string
 
 }
 

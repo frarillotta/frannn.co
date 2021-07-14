@@ -1,4 +1,6 @@
-export const fbm = `#ifdef GL_ES
+export const fbm = {
+
+  fragmentShader: `#ifdef GL_ES
     precision highp float;
     #endif
     #ifndef FNC_MOD289
@@ -372,4 +374,6 @@ export const fbm = `#ifdef GL_ES
         color -= distance(vec2(st.y, st.x), vec2(0., st.x))*3.;
     
         gl_FragColor = vec4(color,1.);
-    }`
+    }`,
+  shaderLink: ""
+}

@@ -1,4 +1,5 @@
-export const sun = `#ifdef GL_ES
+export const sun = {
+    fragmentShader: `#ifdef GL_ES
     precision highp float;
     #endif
     
@@ -177,4 +178,6 @@ export const sun = `#ifdef GL_ES
         color -= stroke(c, .15, .04);
     
         gl_FragColor = vec4(color,1.0);
-    }`
+    }`,
+    shaderLink: ""
+}

@@ -19,6 +19,7 @@ export default function Work() {
                         subtitle={role.title}
                         date={role.date}
                         renderEl={role.shader}
+                        shaderLink={role.shaderLink}
                     >
                         {role.children}
                     </CompositeCard>

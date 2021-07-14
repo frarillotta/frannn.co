@@ -2,8 +2,9 @@ import {CompositeCardProps} from "../../types";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { memo, useMemo, useRef } from "react";
-import {mouseOutInEventListener} from "../../utils";
 import { useIsVisible, useIsMobile, useSafeToRemove } from "../../hooks";
+import { GithubIcon } from "../SVG";
+import { Anchor } from "../Anchor/Anchor";
 
 let CompositeCard = ({
     children,
@@ -12,7 +13,8 @@ let CompositeCard = ({
     invert = false, 
     title, 
     date = "", 
-    renderEl = null
+    renderEl = null,
+    shaderLink
 }: CompositeCardProps) => {
     const alignText = invert ? "row" : "row-reverse";
     const itemsAlignment = invert ? "flex-start" : "flex-end";
@@ -74,7 +76,13 @@ let CompositeCard = ({
                     <RenderElWrapper>
                         {!safeToRemove && <RenderEl>
                             {renderEl}
+                            <Anchor href={shaderLink}>
+                                <GitIconWrapper>
+                                    <GithubIcon/>
+                                </GitIconWrapper>
+                            </Anchor>
                         </RenderEl>}
+
                     </RenderElWrapper>
             </SectionWrapper>
         </AnimatePresence>
@@ -104,6 +112,16 @@ const DetailsWrapper = styled.div`
     flex-direction: column;
     align-items: var(--items-alignment);
     gap: 1rem;
+`
+
+const GitIconWrapper = styled.div`
+    filter: invert(1);
+    position: absolute;
+    mix-blend-mode: difference;
+    bottom: 20px;
+    right: 20px;
+    height: 42px;
+    width: 42px;
 `
 
 const TitleWrapper = styled.header`

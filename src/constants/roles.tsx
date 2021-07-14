@@ -1,11 +1,11 @@
 import type {Roles} from "../types";
 import {Anchor} from "../components/Anchor/Anchor";
 import {Shader} from "../components/Shader/Shader";
-import {shaders} from "./shaders";
+import { fbm, raymarching, fullscreenFbm, simplexNoise, sun, dithertexture } from "../sketches/Glsl";
 
 export const roles: Roles[] = [
     {
-      company: <Anchor href={"https://www.ynap.com/"}>Yoox Net-a-Porter</Anchor>,
+      company: "Yoox Net-a-Porter",
       title: "Frontend Developer",
       location: "Bologna, Italy",
       date: "May 2021 - Present",
@@ -16,10 +16,11 @@ export const roles: Roles[] = [
         <p> 
           and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
-      </>,  
-      shader: <Shader shader={shaders.raymarching}/>
+      </>,
+      shader: <Shader shader={raymarching}/>,
+      shaderLink: raymarching.shaderLink
     }, {
-      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
+      company: "Sovrn",
       title: "Full-stack Software Engineer",
       location: "London, United Kingdom",
       date: "July 2020 - April 2021",
@@ -31,9 +32,10 @@ export const roles: Roles[] = [
           and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
       </>,    
-      shader: <Shader shader={shaders.fullscreenFbm}/>
+      shader: <Shader shader={fullscreenFbm}/>,
+      shaderLink: fullscreenFbm.shaderLink
     }, {
-      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
+      company: "Sovrn",
       title: "Implementation Engineer II",
       location: "London, United Kingdom",
       date: "January 2020 - June 2020",
@@ -45,9 +47,10 @@ export const roles: Roles[] = [
           and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
       </>,    
-      shader: <Shader shader={shaders.sun}/>
+      shader: <Shader shader={sun}/>,
+      shaderLink: sun.shaderLink
     }, {
-      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
+      company: "Sovrn",
       title: "Solutions Engineer",
       location: "London, United Kingdom",
       date: "May 2019 - December 2019",
@@ -59,9 +62,10 @@ export const roles: Roles[] = [
           and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
       </>,     
-      shader: <Shader shader={shaders.ditherTexture}/>
+      shader: <Shader shader={dithertexture}/>,
+      shaderLink: dithertexture.shaderLink
     }, {
-      company: <Anchor href={"https://www.sovrn.com/"}>Sovrn</Anchor>,
+      company: "Sovrn",
       title: "Operations Specialist",
       location: "London, United Kingdom",
       date: "August 2018 - May 2019",
@@ -73,6 +77,7 @@ export const roles: Roles[] = [
           and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
       </>, 
-      shader: <Shader shader={shaders.simplexNoise}/>
+      shader: <Shader shader={simplexNoise}/>,
+      shaderLink: simplexNoise.shaderLink
     }
   ];

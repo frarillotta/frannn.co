@@ -1,1 +1,1 @@
-export {ExpandLessSVG} from "./ExpandLess";
+export {GithubIcon} from "./GithubIcon";

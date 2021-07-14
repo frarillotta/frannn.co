@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {Shader} from "../components/Shader/Shader"
-import {shaders, homepageText} from "../constants"
+import { homepageText, shader } from "../constants"
 import {Header} from "../components/Header/Header"
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
 
@@ -10,7 +10,7 @@ export default function Home() {
     <Container>
       <Header variant={"white"}/>
       <Background>
-          <Shader shader={shaders.fbm}/>
+          <Shader shader={shader}/>
       </Background>
       <Main>
         <Article>

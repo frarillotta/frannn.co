@@ -3,9 +3,8 @@ import dynamic from "next/dynamic";
 import {Header} from "../components/Header/Header";
 import styled from "styled-components";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
-import { useIsVisible, useIsMobile, useSafeToRemove } from "../hooks";
-import { useEffect, useRef } from "react";
-// import { P5Renderer } from "../components/p5Renderer/p5Renderer";
+import { useIsVisible, useSafeToRemove } from "../hooks";
+import { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const P5Renderer = dynamic(
@@ -40,7 +39,7 @@ const AboutEntry = ({text, sketch, index}) => {
     return <AnimatePresence initial={false}>
         <Section 
             ref={el}
-            style={index === 0 && {scrollSnapAlign: "none"}}
+            index={index}
         >
             <P5El
                 animate={{
@@ -72,7 +71,7 @@ const Main = styled.main`
 
 const Section = styled(motion.section)`
     transform-style: preserve-3d;
-    scroll-snap-align: center;
+    scroll-snap-align: ${props => props.index === 0 ? "none" : "center"};
     display: flex;
     margin: auto;
     width: 80vw;
