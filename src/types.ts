@@ -34,7 +34,7 @@ export type CompositeCardProps = {
 
 export type HeaderProps = {
     variant: "white"|"black",
-    style?: {}
+    style?: CSSProperties
 };
 
 export type TextCarouselProps = {
