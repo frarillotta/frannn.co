@@ -1,7 +1,8 @@
-import type { P5Props } from "../types";
 import { sea } from "../sketches/p5";
+import { starfield } from "../sketches/p5/starfield";
+import { disruption } from "../sketches/p5/disruption";
 
-export const aboutPageContent: {text: JSX.Element; sketch: P5Props}[] = [
+export const aboutPageContent: {text: JSX.Element; sketch: (p5) => void}[] = [
   {
     text: <>
       <p>
@@ -11,7 +12,7 @@ export const aboutPageContent: {text: JSX.Element; sketch: P5Props}[] = [
         did this shit update?
       </p> 
     </>,
-    sketch: sea
+    sketch: starfield
   },
   {
     text: <>
@@ -22,29 +23,7 @@ export const aboutPageContent: {text: JSX.Element; sketch: P5Props}[] = [
         did this shit update?
       </p> 
     </>,
-    sketch: sea
-  },
-  {
-    text: <>
-      <p>
-        YEa i definitely need to write some shit in here, idk what tho
-      </p>
-      <p>
-        did this shit update?
-      </p> 
-    </>,
-    sketch: sea
-  },
-  {
-    text: <>
-      <p>
-        YEa i definitely need to write some shit in here, idk what tho
-      </p>
-      <p>
-        did this shit update?
-      </p> 
-    </>,
-    sketch: sea
+    sketch: disruption
   },
   {
     text: <>

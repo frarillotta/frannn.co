@@ -1,5 +1,6 @@
-import p5Types from "p5"; 
+import p5 from "p5"; 
 import {ReactElement} from "react";
+import type { ReactNode, CSSProperties } from "react";
 
 export type ThreeFragShaderProps = {
     shader: {
@@ -36,10 +37,11 @@ export type TextCarouselProps = {
     color: string;
 }
 
-export type P5Props =  {
-    setup: (p5: p5Types, canvasParentRef: Element) => void;
-    draw: (p5: p5Types) => void;
-    windowResized: (p5: p5Types) => void;
+export type P5RendererProps =  {
+    /** The p5 sketch function to be run. Must be written in p5's instance mode. */
+    sketch: (p: typeof p5) => void;
+    /** If true, the canvas will resize to window whenever the window is resized */
+    autoResizeToWindow?: boolean;
 }
 
 export interface Roles {
@@ -49,7 +51,7 @@ export interface Roles {
     date: string;
     location: string;
     children: JSX.Element;
-    shader: ReactElement<ThreeFragShaderProps | P5Props>;
+    shader: ReactElement<ThreeFragShaderProps | P5RendererProps>;
 
 }
 

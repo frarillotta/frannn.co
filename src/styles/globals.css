@@ -74,10 +74,10 @@ a {
 	color: inherit;
 }
 
-.p5-canvas {
+.p5Canvas {
 	
 	width: 100%!important;
-	
+	height: 100%!important;
 }
 
 .display-none {

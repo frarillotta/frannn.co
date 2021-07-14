@@ -5,11 +5,11 @@ import styled from "styled-components";
 import { AnimationWrapper } from "../components/AnimationWrapper/AnimationWrapper";
 import { useIsVisible, useIsMobile, useSafeToRemove } from "../hooks";
 import { useEffect, useRef } from "react";
+// import { P5Renderer } from "../components/p5Renderer/p5Renderer";
 import { motion, AnimatePresence } from "framer-motion";
 
-//avoid SSR and do some code splitting!
 const P5Renderer = dynamic(
-  () => import("../components/p5/p5"),
+  () => import("../components/p5Renderer/p5Renderer"),
   { ssr: false }
 )
 
@@ -33,15 +33,9 @@ export default function About() {
 
 const AboutEntry = ({text, sketch, index}) => {
 
-    const {draw, setup, windowResized} = sketch;
-
     const el = useRef(null);
     const isVisible = useIsVisible(el, .75);
     const safeToRemove = useSafeToRemove(isVisible);
-
-    useEffect(()=>{
-        console.log(el, safeToRemove)
-    }, [safeToRemove])
 
     return <AnimatePresence initial={false}>
         <Section 
@@ -54,7 +48,7 @@ const AboutEntry = ({text, sketch, index}) => {
                 }}
                 transition={{ duration: 1.2}}
             >
-                {!safeToRemove && <P5Renderer draw={draw} setup={setup} windowResized={windowResized}/>}
+                {!safeToRemove && <P5Renderer sketch={sketch}/>}
             </P5El>
             <Text>
                 {text}
