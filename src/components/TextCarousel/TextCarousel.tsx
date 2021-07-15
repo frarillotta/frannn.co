@@ -29,7 +29,7 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
 
     useEffect(() => {
         const interval = setInterval(()=>{
-            if (index === terms.length - 1) {
+            if (index === terms.length - 1 && index != 0) {
                 setIndex(0);
             } else {
                 setIndex(index+1);
@@ -40,9 +40,8 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
     });
 
     useEffect(()=>{
-
         if (activeEl.current) { 
-            parentEl.current.style.width = `${activeEl.current.clientWidth}px`
+            parentEl.current.style.width = `${activeEl.current.offsetWidth}px`
         }
     }, [index]);
 
@@ -75,9 +74,9 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
 
 const TermWrapper = styled.span`
     position: relative;
-    display: inline-block;
-    width: 100px;
-    height: 1rem;
+    @media (max-width: ${props => props.theme.phoneDown}) {
+        height: 2rem;
+    }
     margin: 0 2px;
     transition: width .4s cubic-bezier(0.12, 0.59, 0.47, 0.93);
 `
@@ -85,8 +84,12 @@ const TermWrapper = styled.span`
 const Term = styled(motion.div)`
     color: var(--color);
     position: absolute;
-    top: -2px;
     left: 0;
+    /* this sucks */
+    min-width: 205px;
+    @media (max-width: ${props => props.theme.phoneDown}) {
+        min-width: 105px;
+    }
     white-space: nowrap;
     font-weight: 700;
 `

@@ -49,8 +49,6 @@ table {
 #__next {
 	font-family: "Libre Baskerville", serif;
 	background: white;
-	/* TODO there's a bug here */
-	/* height: 1px; */
 	min-height: 100%;
 }
 

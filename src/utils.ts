@@ -88,7 +88,6 @@ function renderShader(canvas: HTMLCanvasElement, fragmentShader: string, texture
       uniforms,
     });
     scene.add(new THREE.Mesh(plane, material));
-    // renderer.setPixelRatio(window.devicePixelRatio);
   
     function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
