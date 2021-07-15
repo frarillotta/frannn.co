@@ -133,6 +133,6 @@ export const dithertexture = {
 
       gl_FragColor = color;
   }`,
-  shaderLink: "",
+  shaderLink: "https://github.com/frarillotta/frannn.co/blob/master/src/sketches/Glsl/dithertexture.ts",
   texture: "/anseladams.jpg"
 }

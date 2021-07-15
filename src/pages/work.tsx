@@ -35,7 +35,7 @@ const Main = styled.main`
     flex-direction: column;
     align-items: center;
     margin: auto;
-    margin-bottom: 4rem;
+    padding-bottom: 4rem;
     margin-top: 4rem;
     gap: 6rem;
     max-width: 80vw;

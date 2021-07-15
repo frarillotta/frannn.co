@@ -372,5 +372,5 @@ export const fullscreenFbm = {
 
         gl_FragColor = vec4(color,1.0);
     }`,
-  shaderLink: ""
+  shaderLink: "https://github.com/frarillotta/frannn.co/blob/master/src/sketches/Glsl/fullscreenFbm.ts"
 }

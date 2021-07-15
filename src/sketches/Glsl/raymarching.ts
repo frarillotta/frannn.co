@@ -209,5 +209,5 @@ export const raymarching = {
 
         gl_FragColor = vec4(color,1.0);
     }`,
-  shaderLink: ""
+  shaderLink: "https://github.com/frarillotta/frannn.co/blob/master/src/sketches/Glsl/raymarching.ts"
 }
