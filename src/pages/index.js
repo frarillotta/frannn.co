@@ -45,12 +45,9 @@ const Main = styled.main`
 
 const Article = styled.article`
   padding: 2rem;
-  display: flex;
-  gap: .5rem;
   color: white;
   line-height: 2.5rem;
   font-size: 2rem;
-  flex-wrap: wrap;
   @media (max-width: ${props => props.theme.phoneDown}) {
     font-size: 1rem;
   }

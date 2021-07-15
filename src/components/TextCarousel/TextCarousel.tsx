@@ -74,6 +74,8 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
 
 const TermWrapper = styled.span`
     position: relative;
+    vertical-align: top;
+    display: inline-block;
     @media (max-width: ${props => props.theme.phoneDown}) {
         height: 2rem;
     }
