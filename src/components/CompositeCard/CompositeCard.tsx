@@ -100,6 +100,7 @@ const SectionWrapper = styled(motion.section)`
     grid-template-columns: 1fr 1fr;
     grid-template-areas: ${props => props.gridTemplate};
     @media (max-width: ${props => props.theme.tabletDown}) {
+        grid-template-rows: 150px 0fr 0fr;
         grid-template-areas: 
         "header header"
         "content content"
