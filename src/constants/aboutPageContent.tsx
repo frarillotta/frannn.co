@@ -6,7 +6,7 @@ export const aboutPageContent: {text: JSX.Element; sketch: (p5) => void}[] = [
   {
     text: <>
       <p>
-        I should write something here but I have no idea what
+       I should write something here but I have no idea what
       </p>
       <p>
         Banana, mango, apple, KIWI
@@ -17,7 +17,7 @@ export const aboutPageContent: {text: JSX.Element; sketch: (p5) => void}[] = [
   {
     text: <>
       <p>
-        I am on an eternal quest to become a better developer, designer, artist and product leader.
+        I am on an eternal quest to become a better developer, designer, artist, teacher and product leader.
       </p>
       <br/>
       <p>

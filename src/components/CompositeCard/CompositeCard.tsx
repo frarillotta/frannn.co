@@ -149,12 +149,12 @@ const Subtitle = styled.h2`
 
 const Location = styled.h2`
     font-style: italic;
-    color: hsl(0deg 0% 43%);
+    color: hsl(0deg 0% 35%);
 `
 
 const Date = styled.h2`
     font-size: 0.9rem;
-    color: hsl(0deg 0% 43%);
+    color: hsl(0deg 0% 35%);
 `
 
 const ContentText = styled.article`
