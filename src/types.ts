@@ -14,7 +14,7 @@ export type ThreeFragShaderProps = {
 export type AnchorProps = {
     href: string;
     children: JSX.Element | string;
-    style: CSSProperties;
+    style?: CSSProperties;
 };
 
 export type HeaderLinkProps = {
