@@ -37,7 +37,7 @@ export const roles: Roles[] = [
         </p>
         <br/>  
         <p>
-          Using my in-depth knowledge and experience of the adtech domain, I quickly became the SME for matters such as Google Ad Manager and Prebid integrations for the whole UK engineering team.
+          Using my in-depth knowledge and experience of the adtech domain, I quickly became the SME for matters such as Google Ad Manager and Prebid for the whole UK engineering team.
         </p>
         <p> 
           Aside from day-to-day development, my work was focused on the full stack of our tech: from client-side code to our backend. On the client-side front I focused on our engagement data collection, which handles more than 1.5 billion request each day globally. I improved the quality of those metrics by using modern APIs and running constant experiments, which resulted in the accuracy getting closer to the leading adtech platforms (namely, Google, Facebook, The Trade Desk, etc.).
