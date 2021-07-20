@@ -18,7 +18,7 @@ export const roles: Roles[] = [
           My role at YNAP is focused on the frontend development of <Anchor style={{fontWeight: "bold"}} href="https://www.yoox.com/">yoox.com</Anchor> for the Cross team. My team is responsible for aligning the global frontend engineering department and ensuring that quality, pratices and standards are consistent across the whole organization.
         </p>
         <p> 
-          Despite having been there for a very short period of time, I have been writing production-ready code from week 1. My current effort is focused on migrating from our legacy .Net codebase to a modern React/Redux infrastructure and on improving our developer experience and maintainability of our codebases.
+          Despite having been there for a very short period of time, I have been writing production-ready code from week 1. My current effort is focused on migrating from our legacy .Net codebase to a modern React/Redux infrastructure, improving our developer experience and maintainability of our codebases, improving our app's performance, both in backend and frontend, as well as improving our web vitals.
         </p>
       </>,
       shader: <Shader shader={raymarching}/>,
