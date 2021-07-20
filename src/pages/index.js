@@ -24,9 +24,9 @@ export default function Home() {
       <AnimatePresence initial={false}>
         <Article
           animate={{
-            translateX: isLoaded ? 0 : 100
+            translateX: isLoaded ? 0 : 20
           }}
-          transition={{ duration: 1.2, ease: [.22,.85,.41,1.03]}}
+          transition={{ duration: 1.8, ease: [.22,.85,.41,1.03]}}
         >
            {homepageText}
         </Article>
