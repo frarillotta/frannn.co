@@ -21,16 +21,16 @@ export default function Home() {
           <Shader shader={shader}/>
       </Background>
       <Main>
-      <AnimatePresence initial={false}>
-        <Article
-          animate={{
-            translateX: isLoaded ? 0 : 20
-          }}
-          transition={{ duration: 1.8, ease: [.22,.85,.41,1.03]}}
-        >
-           {homepageText}
-        </Article>
-      </AnimatePresence>
+        <AnimatePresence initial={false}>
+          <Article
+            animate={{
+              translateX: isLoaded ? 0 : 100
+            }}
+            transition={{ duration: 1.2, ease: [.22,.85,.41,1.03]}}
+          >
+            {homepageText}
+          </Article>
+        </AnimatePresence>
       </Main>
     </Container>
   )
@@ -51,6 +51,7 @@ const Main = styled.main`
   display: flex;
   position: relative;
   margin: auto;
+  overflow: hidden;
   margin-top: max(15%, 3rem);
   width: 75%;
   @media (max-width: ${props => props.theme.phoneDown}) {
