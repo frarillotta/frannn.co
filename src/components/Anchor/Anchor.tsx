@@ -3,11 +3,11 @@ import Link from "next/link"
 import {mouseOutInEventListener} from "../../utils";
 import {AnchorProps} from "../../types";
 
-const Anchor = ({href, children}: AnchorProps) => {
+const Anchor = ({href, children, ...delegate}: AnchorProps) => {
 
     const ref = useRef();
 
-    useEffect(()=>{
+    useEffect(() => {
         
         const el = ref.current;
         const eventsCleanup = mouseOutInEventListener(el);
@@ -18,7 +18,7 @@ const Anchor = ({href, children}: AnchorProps) => {
 
     return (
         <Link href={href}>
-            <a ref={ref}>{children}</a>
+            <a  {...delegate} ref={ref}>{children}</a>
         </Link>
     )
 

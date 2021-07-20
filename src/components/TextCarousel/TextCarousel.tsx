@@ -61,9 +61,10 @@ const TextCarousel = ({terms, color}: TextCarouselProps) => {
                     exit="exit"
                     variants={variants}
                     transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
-                    opacity: { duration: 0.4 }
-                }}>
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.4 }
+                    }}
+                >
                     {terms[index]}
                 </Term>
             </AnimatePresence>
@@ -83,7 +84,7 @@ const TermWrapper = styled.span`
     transition: width .4s cubic-bezier(0.12, 0.59, 0.47, 0.93);
 `
 
-const Term = styled(motion.div)`
+const Term = styled(motion.span)`
     color: var(--color);
     position: absolute;
     left: 0;

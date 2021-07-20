@@ -22,7 +22,7 @@ let CompositeCard = ({
     const el = useRef<Element>();
 
     const isMobile = useIsMobile();
-    const threshold = useMemo(() => isMobile ? 0.3 : 0.63, [isMobile]);
+    const threshold = useMemo(() => isMobile ? 0.2 : 0.63, [isMobile]);
     const isVisible = useIsVisible(el, threshold);
 
     const safeToRemove = useSafeToRemove(isVisible);

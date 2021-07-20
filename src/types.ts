@@ -1,6 +1,6 @@
 import p5 from "p5"; 
 import {ReactElement} from "react";
-import type { ReactNode, CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 export type ThreeFragShaderProps = {
     shader: {
@@ -14,6 +14,7 @@ export type ThreeFragShaderProps = {
 export type AnchorProps = {
     href: string;
     children: JSX.Element | string;
+    style: CSSProperties;
 };
 
 export type HeaderLinkProps = {

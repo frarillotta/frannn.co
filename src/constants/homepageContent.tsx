@@ -1,9 +1,12 @@
 import {TextCarousel} from "../components/TextCarousel/TextCarousel";
-import { carouselTerms as terms } from "./carouselTerms";
+import { iAm, iAmDoing } from "./carouselTerms";
 import { fbm } from "../sketches/Glsl";
 
-const homepageText = <>Hi, I'm Fran. As you read this, I am <TextCarousel terms={terms} color={"hsl(212deg 90% 64%)"}/> in <del>London</del> Bologna, Italy.</>
-
+const homepageText = <>
+    <p>Hi! I'm Fran. As you read this, I'm <TextCarousel terms={iAmDoing} color={"hsl(212deg 90% 64%)"}/>.</p>
+    <p>I am <TextCarousel terms={iAm} color={"hsl(312deg 90% 64%)"}/>. </p> 
+    <p>I am currently based in Bologna, Italy, after having lived in London for the past few years.</p>
+    </>
 const shader = fbm;
 
 export { homepageText, shader }

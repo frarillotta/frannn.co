@@ -14,7 +14,6 @@ const P5Renderer = dynamic(
 
 export default function About() {
 
-
     return (
         <AnimationWrapper>
             <PageWrapper>
@@ -56,10 +55,6 @@ const AboutEntry = ({text, sketch, index}) => {
     </AnimatePresence>
 
 }
-
-const StyledHeader = styled(Header)`
-    scroll-snap-align: start;
-`
 
 const PageWrapper = styled.div`
     height: 100vh;

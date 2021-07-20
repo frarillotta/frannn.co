@@ -179,7 +179,6 @@ export const raymarching = {
         vec3 camPos = vec3(0., 0., 3.);
         vec3 ray = normalize(vec3(st - .5, -1.5));
 
-        vec3 rayPos = camPos;
         float t = 0.;
         float tMax = 5.;
         for (int i = 0; i < 256; i++) {

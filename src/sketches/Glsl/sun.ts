@@ -23,20 +23,6 @@ export const sun = {
     precision highp float;
     #endif
     
-    #ifndef FNC_CIRCLESDF
-    #define FNC_CIRCLESDF
-    
-    float circleSDF(vec2 st) {
-    
-        return length(st-.5)*2.;
-    
-    }
-    
-    #endif
-    #ifdef GL_ES
-    precision highp float;
-    #endif
-    
     #ifndef FNC_FILL
     #define FNC_FILL
     
@@ -139,37 +125,24 @@ export const sun = {
     }
     #endif
     
-
-    mat2 rotate2d(float _angle){
-        return mat2(cos(_angle),-sin(_angle),
-                    sin(_angle),cos(_angle));
-    }
-    
     void main() {
         float QRT_PI = PI/4.;
         vec2 st = gl_FragCoord.xy/u_resolution.xy;
     
         st = ratio(st, u_resolution);
-        vec2 st2 = st;
-        st2 = st2*1.5;
-        st2 = st2-.25;
-        vec3 color = vec3(0.);
-    
         st = st*1.5;
         st = st-.25;
-        // move space from the center to the vec2(0.0)
-        st -= vec2(0.5);
-        // rotate the space
-        st = rotate2d( (u_time/4.)*PI ) * st;
-        // move it back to the original place
-        st += vec2(0.5);
+        vec2 st2 = st;
+        vec3 color = vec3(0.);
+        st = rotate(st, (u_time/4.)*PI);
         float bg = starSDF(st, 16, .13);
         color += fill(bg, 1.3);
         float l = 0.;
+        st2 = rotate(st2, (-u_time/4.)*PI);
         for (float i = 0.; i < 8.; i++) {
             vec2 xy = rotate(st2, QRT_PI*i);
             xy.y -= .3;
-            float tri = polySDF(xy+cos(u_time)/9., 3);
+            float tri = polySDF(xy+sin(u_time)/3., 3);
             color += fill(tri, .3);
             l += stroke(tri, .3, .03);
         }
