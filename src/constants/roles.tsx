@@ -93,7 +93,7 @@ export const roles: Roles[] = [
       date: "August 2018 - May 2019",
       children: <>
         <p>
-         <Anchor style={{fontWeight: "bold"}} href="https://www.sovrn.com/">Sovrn</Anchor> is an adtech company focused on publishers. Their mission is to allow online media publishers to be truly independent. Their technology is designed to reward good content with high levels of user engagement and brand safety.
+         <Anchor style={{fontWeight: "bold"}} href="https://www.sovrn.com/">Sovrn</Anchor> is one of the leading supply side adtech companies, handling more than 40 billion ad requests per day. Their mission is to allow online media publishers to be truly independent. Their technology is designed to reward good content with high levels of user engagement and brand safety.
         </p>
         <br/>
         <p>
