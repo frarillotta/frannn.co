@@ -41,7 +41,7 @@ export const aboutPageContent: {text: JSX.Element; sketch: (p5) => void}[] = [
       </p>
       <br/>
       <p>
-        You can check out the code used for this site <Anchor style={{textDecoration: "underline"}} href="https://github.com/frarillotta/frannn.co">here</Anchor>
+        You can check out the source for this site <Anchor style={{textDecoration: "underline"}} href="https://github.com/frarillotta/frannn.co">here</Anchor>
       </p> 
     </>,
     sketch: disruption
