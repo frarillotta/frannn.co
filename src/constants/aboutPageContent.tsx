@@ -10,7 +10,7 @@ export const aboutPageContent: {text: JSX.Element; sketch: (p5) => void}[] = [
         I am on an eternal quest to become a better developer, designer, artist, teacher and product leader.
       </p>
       <p>
-        I consider myself an end-to-end owner, with a strong dedication to push the boundaries of what I can do in any given domain. I thrive in product-driven companies that empower and cherish creativity, ingenuity and boldness. 
+        I consider myself an end-to-end owner, with a strong dedication to push the boundaries of what I can do in any given domain. I thrive in environments that empower and cherish creativity, ingenuity and boldness. 
       </p>
       <br/>
       <p>
