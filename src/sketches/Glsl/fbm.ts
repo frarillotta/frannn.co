@@ -363,7 +363,7 @@ export const fbm = {
         vec2 st = gl_FragCoord.xy/u_resolution.xy;
         vec2 ratiost = ratio(st, u_resolution);
     
-        float noise = fbm(vec3(ratiost, u_time/50.));
+        float noise = fbm(vec3(ratiost, u_time/40.));
         float noise2 = fbm(vec3(ratiost, noise));
     
         vec3 color = vec3(0.);
