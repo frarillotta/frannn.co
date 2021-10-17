@@ -57,6 +57,7 @@ table {
 	cursor: none!important;
 	transition: color .75s linear;
 	-webkit-font-smoothing: antialiased;
+	transform-style: preserve-3d;
 }
 
 :root {
