@@ -5,17 +5,10 @@ import { Suspense } from 'react'
 import { Text } from '@react-three/drei'
 import localFont from 'next/font/local'
 import { motion } from 'framer-motion'
-import { IntroParticles } from '@/components/IntroParticles/IntroParticles'
 import styled from 'styled-components'
 import { SVGText } from '@/components/SVGText/SVGText'
 import { Card } from '@/components/Card/Card'
 import { OutLink } from '@/components/OutLink/OutLink'
-import { Sun } from '@/components/3d/Shaders/Sun/Sun'
-import { FBM } from '@/components/3d/Shaders/FBM/FBM'
-import { Raymarching } from '@/components/3d/Shaders/Raymarching/Raymarching'
-import { SimplexNoise } from '@/components/3d/Shaders/SimplexNoise/SimplexNoise'
-import { DitherTexture } from '@/components/3d/Shaders/DitherTexture/DitherTexture'
-import { CurlNoise } from '@/components/3d/Shaders/CurlNoise/CurlNoise';
 
 import outlineShaderIcon from 'public/outline-shader-icon.png';
 import flockingIcon from 'public/flocking-icon.png';
@@ -27,8 +20,32 @@ import strangeAttractorsIcon from 'public/strange-attractors-icon.png';
 import NextImage from 'next/image'
 import { device } from '@/utils'
 
-const myFont = localFont({ src: '../../public/NeueHaasGrotDisp-45Light-Web.woff' })
+const myFont = localFont({ src: '../../public/NeueHaasGrotDisp-45Light-Web.woff' });
 
+
+
+const Raymarching = dynamic(() => import('@/components/3d/Shaders/Raymarching/Raymarching').then((mod) => mod.Raymarching), {
+  ssr: false
+})
+
+const SimplexNoise = dynamic(() => import('@/components/3d/Shaders/SimplexNoise/SimplexNoise').then((mod) => mod.SimplexNoise), {
+  ssr: false
+})
+const DitherTexture = dynamic(() => import('@/components/3d/Shaders/DitherTexture/DitherTexture').then((mod) => mod.DitherTexture), {
+  ssr: false
+})
+const CurlNoise = dynamic(() => import('@/components/3d/Shaders/CurlNoise/CurlNoise').then((mod) => mod.CurlNoise), {
+  ssr: false
+})
+const FBM = dynamic(() => import('@/components/3d/Shaders/FBM/FBM').then((mod) => mod.FBM), {
+  ssr: false
+})
+const Sun = dynamic(() => import('@/components/3d/Shaders/Sun/Sun').then((mod) => mod.Sun), {
+  ssr: false
+})
+const IntroParticles = dynamic(() => import('@/components/IntroParticles/IntroParticles').then((mod) => mod.IntroParticles), {
+  ssr: false
+})
 export default function Page() {
   return (
     <>
