@@ -290,7 +290,7 @@ export const Particles = () => {
     return (
         <>
             {/* <Preload all /> */}
-            <ambientLight intensity={1.75} />
+            <ambientLight intensity={2.5} />
             <directionalLight
                 castShadow
                 color={"white"}
@@ -316,7 +316,7 @@ export const Particles = () => {
             />
             <ParticlesElem />
             <mesh position={[0, 0, -2]} receiveShadow>
-                <planeGeometry args={[80, 80, 2]} />
+                <planeGeometry args={[80, 80, 80, 80]} />
                 <meshStandardMaterial color="#ffffff" />
             </mesh>
         </>

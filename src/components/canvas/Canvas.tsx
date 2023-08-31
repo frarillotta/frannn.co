@@ -4,6 +4,7 @@ import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
 import { PerspectiveCamera } from '@react-three/drei'
 import styled from 'styled-components'
 import { Canvas as OffscreenCanvas } from '@react-three/offscreen'
+import { VSMShadowMap, WebGLRenderer } from 'three'
 
 
 export const Common = ({ color }: { color?: string }) => (
@@ -27,7 +28,7 @@ const Canvas = forwardRef<unknown, { worker: Worker, className?: string }>(({ wo
                 className={className} 
                 worker={worker} 
                 dpr={1} 
-                shadows 
+                shadows="basic"
                 {...props} 
             />
         </>
