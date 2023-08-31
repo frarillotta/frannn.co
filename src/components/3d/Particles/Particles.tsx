@@ -290,7 +290,7 @@ export const Particles = () => {
     return (
         <>
             {/* <Preload all /> */}
-            <ambientLight intensity={1} />
+            <ambientLight intensity={1.75} />
             <directionalLight
                 castShadow
                 color={"white"}

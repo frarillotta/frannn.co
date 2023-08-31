@@ -23,15 +23,17 @@ const Canvas = forwardRef<unknown, { worker: Worker, className?: string }>(({ wo
     return (
         <>
             <div ref={localRef} {...props} />
-            <OffscreenCanvas className={className} worker={worker} dpr={1} shadows {...props} />
+            <OffscreenCanvas 
+                className={className} 
+                worker={worker} 
+                dpr={1} 
+                shadows 
+                {...props} 
+            />
         </>
     )
 })
 
-const CanvasWrapper = styled.div`
-    height: 100%;
-    width: 100%;
-`
 Canvas.displayName = 'Canvas'
 
 export { Canvas }

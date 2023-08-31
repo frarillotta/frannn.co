@@ -90,7 +90,7 @@ export default function Page() {
               <Card.Title> <OutLink href="https://r3f-particle-shadows.vercel.app/"> Particle Shadows </OutLink> </Card.Title>
               <Card.AdditionalSubtitle>react-three-fiber, webGL</Card.AdditionalSubtitle>
               <Card.Description>
-                I was told it&lsquo;s impossible to get particles to cast and receive shadows. So obviously I had to try it. Also featuring cool shapes. <br /><u>N.B. This may not work on all GPUs due to driver limitations.</u>
+                I was told it&lsquo;s impossible to get particles to cast and receive shadows. So obviously I had to try it. Also featuring cool shapes. <br /><u>N.B. This may not work on all GPUs due to driver limitations. Also doesn't work on safari cause safari sucks.</u>
               </Card.Description>
             </Card>
             <Card>
