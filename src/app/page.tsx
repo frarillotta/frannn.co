@@ -1,10 +1,6 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
-import { Text } from '@react-three/drei'
-import localFont from 'next/font/local'
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { SVGText } from '@/components/SVGText/SVGText'
 import { Card } from '@/components/Card/Card'
@@ -18,10 +14,9 @@ import particleShadowIcon from 'public/particle-shadow-icon.png';
 import strangeAttractorsIcon from 'public/strange-attractors-icon.png';
 
 import NextImage from 'next/image'
-import { device } from '@/utils'
-
-const myFont = localFont({ src: '../../public/NeueHaasGrotDisp-45Light-Web.woff' });
-
+import NextLink from 'next/link';
+import React from 'react'
+import { Variants, motion } from 'framer-motion'
 
 
 const Raymarching = dynamic(() => import('@/components/3d/Shaders/Raymarching/Raymarching').then((mod) => mod.Raymarching), {
@@ -34,7 +29,7 @@ const SimplexNoise = dynamic(() => import('@/components/3d/Shaders/SimplexNoise/
 const DitherTexture = dynamic(() => import('@/components/3d/Shaders/DitherTexture/DitherTexture').then((mod) => mod.DitherTexture), {
   ssr: false
 })
-const CurlNoise = dynamic(() => import('@/components/3d/Shaders/CurlNoise/CurlNoise').then((mod) => mod.CurlNoise), {
+const VolumeLight = dynamic(() => import('@/components/3d/Shaders/VolumeLight/VolumeLight').then((mod) => mod.VolumeLight), {
   ssr: false
 })
 const FBM = dynamic(() => import('@/components/3d/Shaders/FBM/FBM').then((mod) => mod.FBM), {
@@ -49,7 +44,7 @@ const IntroParticles = dynamic(() => import('@/components/IntroParticles/IntroPa
 export default function Page() {
   return (
     <>
-      <main className={myFont.className}>
+      <Main>
         <IntroScreen>
           <TitlesWrapper>
             <SVGText>Francesco Arillotta</SVGText>
@@ -62,7 +57,11 @@ export default function Page() {
           <ProjectsWrapper>
             <Title>Selected Projects</Title>
             <Card>
-              <Card.PresentationImage><Image src={flockingIcon} height={600} width={600} alt="flocking icon" /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ImageWrapper>
+                  <Image fill={true} src={flockingIcon} alt="flocking icon" />
+                </ImageWrapper>
+              </Card.PresentationImage>
               <Card.Title>  <OutLink href="https://flocking-r3f.vercel.app/"> Flocking </OutLink>  </Card.Title>
               <Card.AdditionalSubtitle>react-three-fiber, postprocessing, Blender</Card.AdditionalSubtitle>
               <Card.Description>
@@ -70,7 +69,11 @@ export default function Page() {
               </Card.Description>
             </Card>
             <Card>
-              <Card.PresentationImage><Image src={galaticasmirogiornoIcon} height={600} width={600} alt="galaticasmirogiorno icon" /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ImageWrapper>
+                  <Image fill={true} src={galaticasmirogiornoIcon} alt="galaticasmirogiorno icon" />
+                </ImageWrapper>
+              </Card.PresentationImage>
               <Card.Title>  <OutLink href="https://www.galaticasmirogiorno.com/projects"> GALATICASMIROGIORNO </OutLink>  </Card.Title>
               <Card.AdditionalSubtitle>Next.js, framer-motion, SVG</Card.AdditionalSubtitle>
               <Card.Description>
@@ -78,7 +81,11 @@ export default function Page() {
               </Card.Description>
             </Card>
             <Card>
-              <Card.PresentationImage><Image src={strangeAttractorsIcon} height={600} width={600} alt="strange attractors icon" /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ImageWrapper>
+                  <Image fill={true} src={strangeAttractorsIcon} alt="strange attractors icon" />
+                </ImageWrapper>
+              </Card.PresentationImage>
               <Card.Title>  <OutLink href="https://strange-attractors-r3f.vercel.app/"> Strange Attractors </OutLink>  </Card.Title>
               <Card.AdditionalSubtitle>react-three-fiber, webGL, GPGPU</Card.AdditionalSubtitle>
               <Card.Description>
@@ -86,7 +93,11 @@ export default function Page() {
               </Card.Description>
             </Card>
             <Card>
-              <Card.PresentationImage><Image src={particleShadowIcon} height={600} width={600} alt="particle shadow icon" /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ImageWrapper>
+                  <Image fill={true} src={particleShadowIcon} alt="particle shadow icon" />
+                </ImageWrapper>
+              </Card.PresentationImage>
               <Card.Title> <OutLink href="https://r3f-particle-shadows.vercel.app/"> Particle Shadows </OutLink> </Card.Title>
               <Card.AdditionalSubtitle>react-three-fiber, webGL</Card.AdditionalSubtitle>
               <Card.Description>
@@ -94,7 +105,11 @@ export default function Page() {
               </Card.Description>
             </Card>
             <Card>
-              <Card.PresentationImage><Image src={outlineShaderIcon} height={600} width={600} alt="outline shader icon" /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ImageWrapper>
+                  <Image fill={true} src={outlineShaderIcon} alt="outline shader icon" />
+                </ImageWrapper>
+              </Card.PresentationImage>
               <Card.Title> <OutLink href="https://r3f-outline-shader.vercel.app/"> Outline Shader </OutLink> </Card.Title>
               <Card.AdditionalSubtitle>react-three-fiber, postprocessing, webGL, Blender</Card.AdditionalSubtitle>
               <Card.Description>
@@ -102,7 +117,11 @@ export default function Page() {
               </Card.Description>
             </Card>
             <Card>
-              <Card.PresentationImage><Image src={crosswordsIcon} height={600} width={600} alt="crosswords icon" /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ImageWrapper>
+                  <Image fill={true} src={crosswordsIcon} alt="crosswords icon" />
+                </ImageWrapper>
+              </Card.PresentationImage>
               <Card.Title> <OutLink href="https://react-crosswords-app.vercel.app/">React Crosswords </OutLink> </Card.Title>
               <Card.AdditionalSubtitle>React</Card.AdditionalSubtitle>
               <Card.Description>
@@ -113,7 +132,11 @@ export default function Page() {
           <ExperienceWrapper>
             <Title>Experience</Title>
             <Card>
-              <Card.PresentationImage><CurlNoise /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ShaderLink href={"/shaders/VolumeLight"}>
+                  <VolumeLight />
+                </ShaderLink>
+              </Card.PresentationImage>
               <Card.Title> Web Engineer </Card.Title>
               <Card.Subtitle>Trainline</Card.Subtitle>
               <Card.AdditionalTitle>London</Card.AdditionalTitle>
@@ -123,8 +146,11 @@ export default function Page() {
               </Card.Description>
             </Card>
             <Card>
-              <Card.PresentationImage><Raymarching /></Card.PresentationImage>
-
+              <Card.PresentationImage>
+                <ShaderLink href={"/shaders/Raymarching"}>
+                  <Raymarching />
+                </ShaderLink>
+              </Card.PresentationImage>
               <Card.Title> Frontend Web Developer </Card.Title>
               <Card.Subtitle>Yoox Net-a-Porter</Card.Subtitle>
               <Card.AdditionalTitle>Bologna, Italy</Card.AdditionalTitle>
@@ -134,7 +160,11 @@ export default function Page() {
               </Card.Description>
             </Card>
             <Card>
-              <Card.PresentationImage><FBM /></Card.PresentationImage>
+              <Card.PresentationImage>
+                <ShaderLink href={"/shaders/FBM"}>
+                  <FBM />
+                </ShaderLink>
+              </Card.PresentationImage>
               <Card.Title>Software Engineer</Card.Title>
               <Card.Subtitle>Sovrn</Card.Subtitle>
               <Card.AdditionalTitle>London</Card.AdditionalTitle>
@@ -145,7 +175,9 @@ export default function Page() {
             </Card>
             <Card>
               <Card.PresentationImage>
-                <Sun />
+                <ShaderLink href={"/shaders/Sun"}>
+                  <Sun />
+                </ShaderLink>
               </Card.PresentationImage>
               <Card.Title>Implementation Engineer II</Card.Title>
               <Card.Subtitle>Sovrn</Card.Subtitle>
@@ -157,7 +189,9 @@ export default function Page() {
             </Card>
             <Card>
               <Card.PresentationImage>
-                <SimplexNoise />
+                <ShaderLink href={"/shaders/SimplexNoise"}>
+                  <SimplexNoise />
+                </ShaderLink>
               </Card.PresentationImage>
               <Card.Title>Solutions Engineer</Card.Title>
               <Card.Subtitle>Sovrn</Card.Subtitle>
@@ -169,7 +203,9 @@ export default function Page() {
             </Card>
             <Card>
               <Card.PresentationImage>
-                <DitherTexture />
+                <ShaderLink href={"/shaders/DitherTexture"}>
+                  <DitherTexture />
+                </ShaderLink>
               </Card.PresentationImage>
               <Card.Title>Operations Specialist</Card.Title>
               <Card.Subtitle>Sovrn</Card.Subtitle>
@@ -181,10 +217,48 @@ export default function Page() {
             </Card>
           </ExperienceWrapper>
         </MoreScreen>
-      </main>
+      </Main>
     </>
   )
 }
+
+const MotionLink = motion(NextLink)
+const ShaderLink: React.FC<{ children: React.ReactNode, href: string }> = ({ children, href }) => {
+  const variants: Variants = {
+    whileHover: {
+      scaleY: 1,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut'
+      }
+    }
+  }
+
+  return <MotionLink
+    href={href}
+    whileHover="whileHover"
+    style={{ position: 'relative' }}
+  >
+    {children}
+    <ShaderLinkOverlay initial={{scaleY: 0, transformOrigin: '0 0'}} variants={variants}></ShaderLinkOverlay>
+  </MotionLink>
+
+}
+
+const ShaderLinkOverlay = styled(motion.div)`
+
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: difference;
+  background: white;
+
+`
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+`
 
 const SVGTextWithCorrection = styled(SVGText)`
 transform: none;
@@ -193,9 +267,17 @@ transform: none;
   }
 `
 
+const ImageWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  position: relative;
+`;
+
 const Image = styled(NextImage)`
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
 `
 
@@ -204,10 +286,7 @@ const ScreenWrapper = styled.article`
   height: auto;
   width: 100%;
   flex-direction: row;
-  // @media ${device.laptopL} {
-  //   height: 100vh;
-  // }
-  height: max(100%, 100vh);
+  min-height: 100vh;
 `
 
 const IntroScreen = styled(ScreenWrapper)`

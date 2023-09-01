@@ -330,7 +330,6 @@ vec3 snoise3( vec4 x ){
 
 #endif
 
-
 void main() {
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
     st = ratio(st, u_resolution);
@@ -341,7 +340,7 @@ void main() {
 
     float n = 0.4 + snoise(vec3(st_i, u_time)) * 0.8;
       
-    color += hsv2rgb(vec3(n * .41, 1., 1.));
+    color += hsv2rgb(vec3(n * .15, 1., 1.));
 
     gl_FragColor = vec4(color,1.0);
 }`

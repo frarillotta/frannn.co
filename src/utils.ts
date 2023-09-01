@@ -14,3 +14,5 @@ export const device = {
     laptopL:  `(min-width: ${size.laptopL})`,
     desktop: `(min-width: ${size.desktop})`,
 };
+
+export const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
