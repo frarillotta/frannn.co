@@ -47,7 +47,7 @@ export default function Page() {
         <IntroScreen>
           <TitlesWrapper>
             <SVGText>Francesco Arillotta</SVGText>
-            <SVGTextWithCorrection x={43} textAnchor="start">Frontend Developer</SVGTextWithCorrection>
+            <SVGText>Frontend Developer</SVGText>
           </TitlesWrapper>
           <IntroParticles />
           {/* <Description>Frontend Developer with a passion for 3d, motion design and maths.</Description> */}
@@ -150,7 +150,7 @@ export default function Page() {
                   <Raymarching />
                 </ShaderLink>
               </Card.PresentationImage>
-              <Card.Title> Frontend Web Developer </Card.Title>
+              <Card.Title> Web Engineer </Card.Title>
               <Card.Subtitle>Yoox Net-a-Porter</Card.Subtitle>
               <Card.AdditionalTitle>Bologna, Italy</Card.AdditionalTitle>
               <Card.AdditionalSubtitle>May 2021 - November 2021</Card.AdditionalSubtitle>
@@ -265,13 +265,6 @@ const Main = styled.main`
   gap: 40px;
 `
 
-const SVGTextWithCorrection = styled(SVGText)`
-transform: none;
-@media (max-width: 390px) {
-    transform: translateX(-36px);
-  }
-`
-
 const ScreenWrapper = styled.article`
   padding: 16px 8px;
   height: auto;
@@ -298,6 +291,7 @@ const TitlesWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
 `
 
 const DetailsWrapper = styled.div`
