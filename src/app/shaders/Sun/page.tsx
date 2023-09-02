@@ -3,13 +3,11 @@
 import dynamic from "next/dynamic"
 import { GithubIcon } from '@/components/GithubIcon/GithubIcon';
 import styled from "styled-components";
-import { isSafari } from "@/detectBrowser";
 
-const Component = isSafari ? dynamic(() => import('@/app/shaders/Sun/safariFallback').then((mod) => mod.default), {
+const Component = dynamic(() => import('@/app/shaders/Sun/Component').then((mod) => mod.Component), {
     ssr: false
-}) : dynamic(() => import('@/components/3d/Shaders/Sun/Sun').then((mod) => mod.Sun), {
-    ssr: false
-});
+})
+
 export default () => {
     return <>
         <Component />

@@ -1,15 +1,13 @@
 'use client'
 
-import dynamic from "next/dynamic"
 import { GithubIcon } from '@/components/GithubIcon/GithubIcon';
+import dynamic from 'next/dynamic';
 import styled from "styled-components";
-import { isSafari } from "@/detectBrowser";
 
-const Component = isSafari ? dynamic(() => import('@/app/shaders/DitherTexture/safariFallback').then((mod) => mod.default), {
+const Component = dynamic(() => import('@/app/shaders/DitherTexture/Component').then((mod) => mod.Component), {
     ssr: false
-}) : dynamic(() => import('@/components/3d/Shaders/DitherTexture/DitherTexture').then((mod) => mod.DitherTexture), {
-    ssr: false
-});
+})
+
 export default () => {
     return <>
         <Component />

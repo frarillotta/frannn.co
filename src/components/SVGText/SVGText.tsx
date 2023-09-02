@@ -29,10 +29,10 @@ export const SVGText: React.FC<{
                     fillOpacity: 0
                 }}
                 animate={{
-                    pathLength: 100,
+                    pathLength: 160,
                     fillOpacity: 1,
                     transition: {
-                        duration: 2.5
+                        duration: 3
                     }
                 }}
                 y={y}

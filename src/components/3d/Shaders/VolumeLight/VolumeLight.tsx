@@ -1,9 +1,9 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
-import { GithubIcon } from '@/components/GithubIcon/GithubIcon'
+import { isSafari } from '@/detectBrowser'
+import { ImageWrapper, Image } from '@/components/Image/Image'
+import volumeLightSafariFallback from 'public/volumeLightSafariFallback.png';
 
 const Canvas = dynamic(() => import('@/components/canvas/OffscreenCanvas').then((mod) => mod.Canvas), {
     ssr: false
@@ -13,6 +13,10 @@ const worker = new Worker(new URL('@/components/3d/Shaders/VolumeLight/worker.ts
 export function VolumeLight() {
 
     return (
-            <Canvas worker={worker} />
+        <>
+            {!isSafari ? <Canvas worker={worker} /> : <ImageWrapper>
+                <Image fill={true} src={volumeLightSafariFallback} alt="volume light image" />
+            </ImageWrapper>}
+        </>
     )
 }
