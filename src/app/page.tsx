@@ -16,6 +16,7 @@ import strangeAttractorsIcon from 'public/strange-attractors-icon.png';
 import NextLink from 'next/link';
 import React from 'react'
 import { Variants, motion } from 'framer-motion'
+import { device } from '@/utils'
 
 const Raymarching = dynamic(() => import('@/components/3d/Shaders/Raymarching/Raymarching').then((mod) => mod.Raymarching), {
   ssr: false
@@ -266,7 +267,10 @@ const Main = styled.main`
 `
 
 const ScreenWrapper = styled.article`
-  padding: 16px 8px;
+  padding: 8px;
+  @media ${device.tablet} {
+    min-width: 16px;
+  }
   height: auto;
   width: 100%;
   flex-direction: row;
@@ -300,9 +304,8 @@ const DetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  
+  min-height: 100vh;
   flex: 1 1;
-  // gap: 16px;
 `;
 
 const ProjectsWrapper = styled(DetailsWrapper)`
