@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic'
 import { useCallback, useEffect } from 'react'
 import { motion, useAnimate } from 'framer-motion'
 import styled from 'styled-components'
+import { Particles } from '../3d/Particles/Particles'
 
 const Canvas = dynamic(() => import('@/components/canvas/Canvas').then((mod) => mod.Canvas), {
     ssr: false
 })
-const worker = new Worker(new URL('@/components/3d/Particles/worker.tsx', import.meta.url), { type: 'module' })
 
 export function IntroParticles() {
     const [wrapperScope, animateShadow] = useAnimate();
@@ -29,7 +29,9 @@ export function IntroParticles() {
 
     return (
         <Wrapper ref={wrapperScope} >
-            <Canvas worker={worker} />
+            <Canvas>
+                <Particles />
+            </Canvas>
         </Wrapper>
     )
 }

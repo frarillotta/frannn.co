@@ -3,7 +3,7 @@
 import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
 import { PerspectiveCamera } from '@react-three/drei'
 import styled from 'styled-components'
-import { Canvas as R3fCanvas } from '@react-three/fiber'
+import { Canvas as OffscreenCanvas } from '@react-three/offscreen'
 import { VSMShadowMap, WebGLRenderer } from 'three'
 
 
@@ -17,19 +17,20 @@ export const Common = ({ color }: { color?: string }) => (
     </Suspense>
 )
 
-const Canvas = forwardRef<unknown, { children: React.ReactNode, className?: string }>(({ className = '', children, ...props }, ref) => {
+const Canvas = forwardRef<unknown, { worker: Worker, className?: string }>(({ worker, className = '', ...props }, ref) => {
     const localRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => localRef.current)
 
     return (
         <>
             <div ref={localRef} {...props} />
-            <R3fCanvas
-                className={className}
-                dpr={1}
+            <OffscreenCanvas 
+                className={className} 
+                worker={worker} 
+                dpr={1} 
                 shadows="basic"
-                {...props}
-            >{children}</R3fCanvas>
+                {...props} 
+            />
         </>
     )
 })
