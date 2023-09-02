@@ -1,3 +1,9 @@
-'use client'
+'use client';
+export let isSafari = false;
+if (typeof window !== 'undefined') {
 
-export const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const navigator = window?.navigator;
+    isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+}
+

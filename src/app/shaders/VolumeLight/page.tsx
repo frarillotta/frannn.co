@@ -3,22 +3,21 @@
 import dynamic from "next/dynamic"
 import { GithubIcon } from '@/components/GithubIcon/GithubIcon';
 import styled from "styled-components";
-import fragmentShader from '@/components/shaders/volumeLight';
-import { ShaderBase } from "@/components/3d/Shaders/ShaderBase";
+import { isSafari } from "@/detectBrowser";
 
-const Canvas = dynamic(() => import('@/components/canvas/Canvas').then((mod) => mod.Canvas), {
+const Component = isSafari ? dynamic(() => import('@/app/shaders/VolumeLight/safariFallback').then((mod) => mod.default), {
     ssr: false
-})
-
+}) : dynamic(() => import('@/components/3d/Shaders/VolumeLight/VolumeLight').then((mod) => mod.VolumeLight), {
+    ssr: false
+});
 export default () => {
     return <>
-        <Canvas>
-            <ShaderBase fragmentShader={fragmentShader} />
-        </Canvas>
-        <GithubWrapper  href="https://github.com/frarillotta/frannn.co/blob/master/src/components/3d/Shaders/VolumeLight/worker.tsx#L6"  target="_blank">
+        <Component />
+        <GithubWrapper href="https://github.com/frarillotta/frannn.co/blob/master/src/components/3d/Shaders/DitherTe/worker.tsx#L6" target="_blank">
             <GithubIcon />
         </GithubWrapper>
     </>
+
 }
 
 const GithubWrapper = styled.a`

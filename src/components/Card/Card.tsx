@@ -37,7 +37,7 @@ Card.PresentationImage = styled.div`
     width: 100%;
     height: 100%;
     grid-area: 1/1/5/1;
-
+    position: relative;
     aspect-ratio: revert;
     @media ${device.tablet} {
         aspect-ratio: 1 / 1;

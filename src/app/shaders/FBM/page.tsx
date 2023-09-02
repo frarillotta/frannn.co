@@ -3,14 +3,17 @@
 import dynamic from "next/dynamic"
 import { GithubIcon } from '@/components/GithubIcon/GithubIcon';
 import styled from "styled-components";
+import { isSafari } from "@/detectBrowser";
 
-const FBM = dynamic(() => import('@/components/3d/Shaders/FBM/FBM').then((mod) => mod.FBM), {
+const Component = isSafari ? dynamic(() => import('@/app/shaders/FBM/safariFallback').then((mod) => mod.default), {
     ssr: false
-})
+}) : dynamic(() => import('@/components/3d/Shaders/FBM/FBM').then((mod) => mod.FBM), {
+    ssr: false
+});
 export default () => {
     return <>
-        <FBM />
-        <GithubWrapper  href="https://github.com/frarillotta/frannn.co/blob/master/src/components/3d/Shaders/FBM/worker.tsx#L6" target="_blank">
+        <Component />
+        <GithubWrapper href="https://github.com/frarillotta/frannn.co/blob/master/src/components/3d/Shaders/DitherTe/worker.tsx#L6" target="_blank">
             <GithubIcon />
         </GithubWrapper>
     </>

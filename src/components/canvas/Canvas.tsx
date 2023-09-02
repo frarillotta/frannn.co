@@ -2,9 +2,7 @@
 
 import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
 import { PerspectiveCamera } from '@react-three/drei'
-import styled from 'styled-components'
 import { Canvas as R3fCanvas } from '@react-three/fiber'
-import { VSMShadowMap, WebGLRenderer } from 'three'
 
 
 export const Common = ({ color }: { color?: string }) => (

@@ -13,10 +13,18 @@ import galaticasmirogiornoIcon from 'public/galaticasmirogiorno-icon.png';
 import particleShadowIcon from 'public/particle-shadow-icon.png';
 import strangeAttractorsIcon from 'public/strange-attractors-icon.png';
 
+import ditherTextureSafariFallback from 'public/ditherTextureSafariFallback.png';
+import fbmSafariFallback from 'public/fbmSafariFallback.png';
+import sdfSafariFallback from 'public/sdfSafariFallback.png';
+import simplexNoiseSafariFallback from 'public/simplexNoiseSafariFallback.png';
+import sunSafariFallback from 'public/sunSafariFallback.png';
+import volumeLightSafariFallback from 'public/volumeLightSafariFallback.png';
+
 import NextImage from 'next/image'
 import NextLink from 'next/link';
 import React from 'react'
 import { Variants, motion } from 'framer-motion'
+import { isSafari } from '@/detectBrowser'
 
 
 const Raymarching = dynamic(() => import('@/components/3d/Shaders/Raymarching/Raymarching').then((mod) => mod.Raymarching), {
@@ -38,9 +46,10 @@ const FBM = dynamic(() => import('@/components/3d/Shaders/FBM/FBM').then((mod) =
 const Sun = dynamic(() => import('@/components/3d/Shaders/Sun/Sun').then((mod) => mod.Sun), {
   ssr: false
 })
-const IntroParticles = dynamic(() => import('@/components/IntroParticles/IntroParticles').then((mod) => mod.IntroParticles), {
+const IntroParticles = dynamic(() => import('@/components/IntroParticles').then((mod) => mod.IntroParticles), {
   ssr: false
 })
+
 export default function Page() {
   return (
     <>
@@ -134,7 +143,9 @@ export default function Page() {
             <Card>
               <Card.PresentationImage>
                 <ShaderLink href={"/shaders/VolumeLight"}>
-                  <VolumeLight />
+                  {!isSafari ? <VolumeLight /> : <ImageWrapper>
+                    <Image fill={true} src={volumeLightSafariFallback} alt="volume light image" />
+                  </ImageWrapper>}
                 </ShaderLink>
               </Card.PresentationImage>
               <Card.Title> Web Engineer </Card.Title>
@@ -148,7 +159,9 @@ export default function Page() {
             <Card>
               <Card.PresentationImage>
                 <ShaderLink href={"/shaders/Raymarching"}>
-                  <Raymarching />
+                  {!isSafari ? <Raymarching /> : <ImageWrapper>
+                    <Image fill={true} src={sdfSafariFallback} alt="raymarching image" />
+                  </ImageWrapper>}
                 </ShaderLink>
               </Card.PresentationImage>
               <Card.Title> Frontend Web Developer </Card.Title>
@@ -162,7 +175,9 @@ export default function Page() {
             <Card>
               <Card.PresentationImage>
                 <ShaderLink href={"/shaders/FBM"}>
-                  <FBM />
+                  {!isSafari ? <FBM /> : <ImageWrapper>
+                    <Image fill={true} src={fbmSafariFallback} alt="fbm image" />
+                  </ImageWrapper>}
                 </ShaderLink>
               </Card.PresentationImage>
               <Card.Title>Software Engineer</Card.Title>
@@ -176,7 +191,9 @@ export default function Page() {
             <Card>
               <Card.PresentationImage>
                 <ShaderLink href={"/shaders/Sun"}>
-                  <Sun />
+                  {!isSafari ? <Sun /> : <ImageWrapper>
+                    <Image fill={true} src={sunSafariFallback} alt="sun image" />
+                  </ImageWrapper>}
                 </ShaderLink>
               </Card.PresentationImage>
               <Card.Title>Implementation Engineer II</Card.Title>
@@ -190,7 +207,9 @@ export default function Page() {
             <Card>
               <Card.PresentationImage>
                 <ShaderLink href={"/shaders/SimplexNoise"}>
-                  <SimplexNoise />
+                  {!isSafari ? <SimplexNoise /> : <ImageWrapper>
+                    <Image fill={true} src={simplexNoiseSafariFallback} alt="simplexNoise image" />
+                  </ImageWrapper>}
                 </ShaderLink>
               </Card.PresentationImage>
               <Card.Title>Solutions Engineer</Card.Title>
@@ -204,7 +223,9 @@ export default function Page() {
             <Card>
               <Card.PresentationImage>
                 <ShaderLink href={"/shaders/DitherTexture"}>
-                  <DitherTexture />
+                  {!isSafari ? <DitherTexture /> : <ImageWrapper>
+                    <Image fill={true} src={ditherTextureSafariFallback} alt="dither texture image" />
+                  </ImageWrapper>}
                 </ShaderLink>
               </Card.PresentationImage>
               <Card.Title>Operations Specialist</Card.Title>
@@ -234,16 +255,24 @@ const ShaderLink: React.FC<{ children: React.ReactNode, href: string }> = ({ chi
     }
   }
 
-  return <MotionLink
+  return <StyledLink
     href={href}
     whileHover="whileHover"
-    style={{ position: 'relative' }}
   >
     {children}
-    <ShaderLinkOverlay initial={{scaleY: 0, transformOrigin: '0 0'}} variants={variants}></ShaderLinkOverlay>
-  </MotionLink>
+    <ShaderLinkOverlay initial={{ scaleY: 0, transformOrigin: '0 0' }} variants={variants}></ShaderLinkOverlay>
+  </StyledLink>
 
 }
+
+const StyledLink = styled(MotionLink)`
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+`
 
 const ShaderLinkOverlay = styled(motion.div)`
 
@@ -251,6 +280,7 @@ const ShaderLinkOverlay = styled(motion.div)`
   inset: 0;
   mix-blend-mode: difference;
   background: white;
+  pointer-events: none;
 
 `
 

@@ -3,14 +3,17 @@
 import dynamic from "next/dynamic"
 import { GithubIcon } from '@/components/GithubIcon/GithubIcon';
 import styled from "styled-components";
+import { isSafari } from "@/detectBrowser";
 
-const Sun = dynamic(() => import('@/components/3d/Shaders/Sun/Sun').then((mod) => mod.Sun), {
+const Component = isSafari ? dynamic(() => import('@/app/shaders/Sun/safariFallback').then((mod) => mod.default), {
     ssr: false
-})
+}) : dynamic(() => import('@/components/3d/Shaders/Sun/Sun').then((mod) => mod.Sun), {
+    ssr: false
+});
 export default () => {
     return <>
-        <Sun />
-        <GithubWrapper  href="https://github.com/frarillotta/frannn.co/blob/master/src/components/3d/Shaders/Sun/worker.tsx#L6"  target="_blank">
+        <Component />
+        <GithubWrapper href="https://github.com/frarillotta/frannn.co/blob/master/src/components/3d/Shaders/DitherTe/worker.tsx#L6" target="_blank">
             <GithubIcon />
         </GithubWrapper>
     </>
