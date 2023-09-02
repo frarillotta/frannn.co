@@ -1,11 +1,9 @@
 import React from 'react'
 import { render } from '@react-three/offscreen'
 import { ShaderBase } from '../ShaderBase'
-import { curlNoise } from '@/components/shaders/curlNoise'
 
-const fragmentShader = /*glsl*/`// Author:
-// Title:
-
+const fragmentShader = /*glsl*/`
+// https://inconvergent.net/2021/volumetric-light/
 precision highp float;
 
 uniform vec2 u_resolution;
