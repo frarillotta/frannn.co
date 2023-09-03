@@ -5,7 +5,7 @@ import {
     Texture,
     Vector2,
 } from "three";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 type ShaderBaseProps = { fragmentShader: string, texture?: string }
 
@@ -20,20 +20,20 @@ export const ShaderBase: React.FC<ShaderBaseProps> = ({ fragmentShader, texture 
 const ShaderBaseComponent: React.FC<Omit<ShaderBaseProps, 'texture'> & { texture?: Texture }> = ({ fragmentShader, texture }) => {
 
     const viewport = useThree(state => state.viewport);
-    const uniforms = {
+    const uniforms = useMemo(() => ({
         u_time: { value: 0 },
         u_resolution: { value: new Vector2() },
         u_texture_1: { type: "t", value: texture }
-    };
-    const width = (Math.trunc(viewport.width * 100)/100) * viewport.dpr;
-    const height = (Math.trunc(viewport.height * 100)/100) * viewport.dpr;
+    }), []);
+    console.log(viewport)
+    const width = (Math.trunc(viewport.width * 10)/10) * viewport.dpr;
+    const height = (Math.trunc(viewport.height * 10)/10) * viewport.dpr;
     useEffect(() => {
-        uniforms.u_resolution.value.set(width, height);
+        uniforms.u_resolution.value = new Vector2(width, height);
     }, [width, height])
     useFrame(({ clock }) => {
         uniforms.u_time.value = clock.elapsedTime;
     });
-
     return (
         <>
             <OrthographicCamera
@@ -60,6 +60,7 @@ const ShaderBaseComponent: React.FC<Omit<ShaderBaseProps, 'texture'> & { texture
         </>
     );
 };
+
 
 const ShaderBaseWithTexture: React.FC<Required<ShaderBaseProps>> = ({ fragmentShader, texture }) => {
 

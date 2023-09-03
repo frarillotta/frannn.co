@@ -58,11 +58,10 @@ const fragmentShader = `
         
 		color =  mix(vec3(0.0), color, strength);
 		
-		if(color == vec3(0.)) discard;
         // float shadowMask = max(0.25, getShadowMask());
 		// color *= shadowMask;
 	
-		gl_FragColor = vec4(color, 1.);
+		gl_FragColor = vec4(color, strength);
         // discard;
 	}
 `;
