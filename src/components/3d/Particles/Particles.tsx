@@ -12,6 +12,7 @@ import {
 } from "three";
 import { curlNoise } from "../../shaders/curlNoise";
 import palettes from 'nice-color-palettes';
+import { isSafari } from "@/detectBrowser";
 
 const getRandomPalette = () => {
     return palettes[Math.floor(Math.random() * palettes.length)];
@@ -57,11 +58,11 @@ const fragmentShader = `
 		strength = 1.0 - strength;
         
 		color =  mix(vec3(0.0), color, strength);
-		
+        if (color == vec3(0.)) discard;
         // float shadowMask = max(0.25, getShadowMask());
 		// color *= shadowMask;
 	
-		gl_FragColor = vec4(color, strength);
+		gl_FragColor = vec4(color, 1.);
         // discard;
 	}
 `;
@@ -228,8 +229,7 @@ const ParticlesElem = () => {
 
     }, [particlesCount]);
 
-    useFrame((state) => {
-        const { clock } = state;
+    useFrame(({clock}) => {
         uniforms.uTime.value = clock.elapsedTime + 30;
     });
 
@@ -289,17 +289,17 @@ const ParticlesElem = () => {
 export const Particles = () => {
     const viewport = useThree((state) => state.viewport);
     const width = (Math.trunc(viewport.width * 100)/100);
+    const isMobileOrSafari = width < mobileViewportBreak || isSafari;
     return (
         <>
             <ambientLight intensity={2.5} />
             <directionalLight
-                castShadow={width > mobileViewportBreak ? true : false}
+                castShadow={isMobileOrSafari ? false : true}
                 color={"white"}
                 position={[10, 3, 4]}
                 intensity={20}
-                //better performance on mobile (remember viewport is in threejs units)
-                shadow-mapSize-width={2048 * 7}
-                shadow-mapSize-height={2048 * 5}
+                shadow-mapSize-width={2048 * 8}
+                shadow-mapSize-height={2048 * 6}
                 shadow-camera-near={1}
                 shadow-camera-far={50}
                 shadow-camera-left={-40}
