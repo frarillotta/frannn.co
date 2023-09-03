@@ -25,16 +25,14 @@ const ShaderBaseComponent: React.FC<Omit<ShaderBaseProps, 'texture'> & { texture
         u_resolution: { value: new Vector2() },
         u_texture_1: { type: "t", value: texture }
     };
-
-    const width = viewport.width * viewport.dpr;
-    const height = viewport.height * viewport.dpr;
+    const width = (Math.trunc(viewport.width * 100)/100) * viewport.dpr;
+    const height = (Math.trunc(viewport.height * 100)/100) * viewport.dpr;
     useEffect(() => {
         uniforms.u_resolution.value.set(width, height);
-    })
+    }, [width, height])
     useFrame(({ clock }) => {
         uniforms.u_time.value = clock.elapsedTime;
     });
-
 
     return (
         <>

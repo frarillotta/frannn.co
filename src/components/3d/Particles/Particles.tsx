@@ -159,8 +159,11 @@ const [innerColor, outerColor] = getRandomColors()
 const mobileViewportBreak = 3.5;
 const ParticlesElem = () => {
     const points = useRef();
-    const viewport = useThree((state) => state.viewport)
-    const particlesCount = viewport.width > mobileViewportBreak ? 350 : 200;
+    const viewport = useThree((state) => state.viewport);
+    const dpr = viewport.dpr;
+
+    const width = (Math.trunc(viewport.width * 100)/100);
+    const particlesCount = width > mobileViewportBreak ? 350 : 200;
     const uniforms = useMemo(() => UniformsUtils.merge([
         UniformsLib.lights,
         {
@@ -177,7 +180,7 @@ const ParticlesElem = () => {
                 value: 1
             },
             uParticleSize: {
-                value: 5.0 * viewport.dpr
+                value: 5.0 * dpr
             },
             uSizeAttenuationMultiplier: {
                 value: 5,
@@ -191,7 +194,7 @@ const ParticlesElem = () => {
             uCurlAmplitude: {
                 value: 0.9,
             }
-        }]), [viewport])
+        }]), [dpr])
 
     const particlesPosition = useMemo(() => {
         const length = particlesCount * particlesCount;
@@ -286,17 +289,18 @@ const ParticlesElem = () => {
 
 export const Particles = () => {
     const viewport = useThree((state) => state.viewport);
+    const width = (Math.trunc(viewport.width * 100)/100);
     return (
         <>
             <ambientLight intensity={2.5} />
             <directionalLight
-                castShadow
+                castShadow={width > mobileViewportBreak ? true : false}
                 color={"white"}
                 position={[10, 3, 4]}
                 intensity={20}
                 //better performance on mobile (remember viewport is in threejs units)
-                shadow-mapSize-width={2048 * (viewport.width > mobileViewportBreak ? 7 : 4)}
-                shadow-mapSize-height={2048 * (viewport.width > mobileViewportBreak ? 5 : 3)}
+                shadow-mapSize-width={2048 * 7}
+                shadow-mapSize-height={2048 * 5}
                 shadow-camera-near={1}
                 shadow-camera-far={50}
                 shadow-camera-left={-40}
