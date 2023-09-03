@@ -1,35 +1,30 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useRef, useMemo, useEffect, useState, useLayoutEffect } from "react";
-import { OrbitControls, Backdrop, PerspectiveCamera, Preload } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useRef, useMemo } from "react";
+import { PerspectiveCamera } from "@react-three/drei";
 import {
     NoBlending,
     Color,
-    MathUtils,
-    Vector3,
-    ShaderChunk,
     UniformsLib,
     UniformsUtils,
     ShaderMaterial,
     BackSide,
     DoubleSide,
-    AdditiveBlending,
-    MultiplyBlending,
 } from "three";
 import { curlNoise } from "../../shaders/curlNoise";
 import palettes from 'nice-color-palettes';
 
 const getRandomPalette = () => {
-	return palettes[Math.floor(Math.random() * palettes.length)];
+    return palettes[Math.floor(Math.random() * palettes.length)];
 }
 
 const getRandomColors = () => {
-	const palette = [...getRandomPalette()];
-	const color1Index = Math.floor(Math.random() * palette.length)
-	const color1 = palette[color1Index];
-	// avoid getting the same color twice by removing it from the array
-	palette.splice(color1Index, 1);
-	const color2 = palette[Math.floor(Math.random() * palette.length)];
-	return [color1, color2]
+    const palette = [...getRandomPalette()];
+    const color1Index = Math.floor(Math.random() * palette.length)
+    const color1 = palette[color1Index];
+    // avoid getting the same color twice by removing it from the array
+    palette.splice(color1Index, 1);
+    const color2 = palette[Math.floor(Math.random() * palette.length)];
+    return [color1, color2]
 }
 
 
@@ -161,43 +156,47 @@ void main() {
 
 
 const [innerColor, outerColor] = getRandomColors()
-const uniforms = UniformsUtils.merge([
-    UniformsLib.lights,
-    {
-        uPositions: {
-            value: null,
-        },
-        uInnerColor: {
-            value: new Color(innerColor)
-        },
-        uOuterColor: {
-            value: new Color(outerColor)
-        },
-        uSelectedShape: {
-            value: 1
-        },
-        uParticleSize: {
-            value: 5.0
-        },
-        uSizeAttenuationMultiplier: {
-            value: 5,
-        },
-        uTime: {
-            value: 0,
-        },
-        uCurlIntensity: {
-            value: 0.75,
-        },
-        uCurlAmplitude: {
-            value: 0.9,
-        }
-    }])
+const mobileViewportBreak = 3.5;
 const ParticlesElem = () => {
     const points = useRef();
-    const particlesCount = 350;
+    const viewport = useThree((state) => state.viewport)
+    const particlesCount = viewport.width > mobileViewportBreak ? 350 : 200;
+    const uniforms = useMemo(() => UniformsUtils.merge([
+        UniformsLib.lights,
+        {
+            uPositions: {
+                value: null,
+            },
+            uInnerColor: {
+                value: new Color(innerColor)
+            },
+            uOuterColor: {
+                value: new Color(outerColor)
+            },
+            uSelectedShape: {
+                value: 1
+            },
+            uParticleSize: {
+                value: 5.0 * viewport.dpr
+            },
+            uSizeAttenuationMultiplier: {
+                value: 5,
+            },
+            uTime: {
+                value: 0,
+            },
+            uCurlIntensity: {
+                value: 0.75,
+            },
+            uCurlAmplitude: {
+                value: 0.9,
+            }
+        }]), [viewport])
+
     const particlesPosition = useMemo(() => {
         const length = particlesCount * particlesCount;
         const particles = new Float32Array(length * 3);
+        const phi = Math.PI * (Math.sqrt(5.) - 1.);
 
         for (let i = 0; i < length; i++) {
             const i3 = i * 3;
@@ -207,7 +206,6 @@ const ParticlesElem = () => {
             let z = Math.random();
 
             //calculate this on CPU cause i need iterations
-            const phi = Math.PI * (Math.sqrt(5.) - 1.);
             y = 1 - (i / (length)) * 2;
             const radius = Math.sqrt(1 - y * y);
             const theta = phi * i;
@@ -287,6 +285,7 @@ const ParticlesElem = () => {
 };
 
 export const Particles = () => {
+    const viewport = useThree((state) => state.viewport);
     return (
         <>
             <ambientLight intensity={2.5} />
@@ -295,8 +294,9 @@ export const Particles = () => {
                 color={"white"}
                 position={[10, 3, 4]}
                 intensity={20}
-                shadow-mapSize-width={2048 * 7}
-                shadow-mapSize-height={2048 * 7}
+                //better performance on mobile (remember viewport is in threejs units)
+                shadow-mapSize-width={2048 * (viewport.width > mobileViewportBreak ? 7 : 4)}
+                shadow-mapSize-height={2048 * (viewport.width > mobileViewportBreak ? 5 : 3)}
                 shadow-camera-near={1}
                 shadow-camera-far={50}
                 shadow-camera-left={-40}
@@ -306,12 +306,12 @@ export const Particles = () => {
                 // shadow-bias={-0.0001}
                 shadow-darkness={0.45}
             />
-            <PerspectiveCamera 
-                makeDefault 
-                fov={40} 
-                position={[-1, 2, 7]} 
+            <PerspectiveCamera
+                makeDefault
+                fov={40}
+                position={[-1, 2, 7]}
                 rotation={[-Math.PI / 8, Math.PI / 6, 0]}
-                // lookAt={() => new Vector3(-4, -10, 0)}
+            // lookAt={() => new Vector3(-4, -10, 0)}
             />
             <ParticlesElem />
             <mesh position={[0, 0, -2]} receiveShadow>

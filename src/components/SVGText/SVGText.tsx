@@ -22,7 +22,6 @@ export const SVGText: React.FC<{
 
         useEffect(() => {
             const bbox = svgRef?.current?.getBBox();
-            console.log(bbox)
             // Set the viewport with these bounds
             svgRef.current?.setAttribute("viewBox", `${bbox?.x} ${bbox?.y} ${bbox?.width} ${bbox?.height}`);
         })

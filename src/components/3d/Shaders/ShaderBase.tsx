@@ -5,7 +5,7 @@ import {
     Texture,
     Vector2,
 } from "three";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 type ShaderBaseProps = { fragmentShader: string, texture?: string }
 
