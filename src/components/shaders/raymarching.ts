@@ -203,7 +203,7 @@ void main() {
         color = vec3(fresnel);
         color = mix(color, bg, -fresnel);
     }
-    color = vec3(dither8x8(gl_FragCoord.xy, color));
+    color = vec3(dither8x8(gl_FragCoord.xy / 3., color));
 
 
     gl_FragColor = vec4(color,1.0);

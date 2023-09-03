@@ -23,8 +23,9 @@ const Canvas = forwardRef<unknown, { children: React.ReactNode, className?: stri
         <>
             <div ref={localRef} {...props} />
             <R3fCanvas
+                style={{pointerEvents: 'none'}}
                 className={className}
-                dpr={1}
+                dpr={Math.max(window.devicePixelRatio, 2)}
                 shadows="basic"
                 {...props}
             >{children}</R3fCanvas>

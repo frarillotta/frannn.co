@@ -258,6 +258,7 @@ const ShaderLinkOverlay = styled(motion.div)`
   inset: 0;
   mix-blend-mode: difference;
   background: white;
+  pointer-events: none;
 `
 
 const Main = styled.main`

@@ -10,12 +10,13 @@ const Canvas = forwardRef<unknown, { worker: Worker, className?: string }>(({ wo
     return (
         <>
             <div ref={localRef} {...props} />
-            <OffscreenCanvas 
-                className={className} 
-                worker={worker} 
-                dpr={1} 
+            <OffscreenCanvas
+                style={{ pointerEvents: 'none' }}
+                className={className}
+                worker={worker}
+                dpr={Math.max(window.devicePixelRatio, 2)}
                 shadows="basic"
-                {...props} 
+                {...props}
             />
         </>
     )

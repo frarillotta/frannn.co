@@ -38,7 +38,7 @@ const CanvasWrapper = styled.div`
 
     border: 2px solid black;
     margin: auto;
-    width: min(50vh, 50vw);
+    width: min(70vh, 70vw);
     position: relative;
     &:after {
         content: "";
