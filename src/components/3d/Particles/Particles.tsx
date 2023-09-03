@@ -160,12 +160,12 @@ const mobileViewportBreak = 3.5;
 const ParticlesElem = () => {
     const points = useRef();
     const viewport = useThree((state) => state.viewport);
-    const dpr = viewport.dpr;
+    const dpr = Math.max(viewport.dpr, 2);
 
     const width = (Math.trunc(viewport.width * 100)/100);
     const isMobileOrSafari = width < mobileViewportBreak || isSafari;
 
-    const particlesCount = isMobileOrSafari ? 600 : 400;
+    const particlesCount = isMobileOrSafari ? 500 : 400;
     const uniforms = useMemo(() => UniformsUtils.merge([
         UniformsLib.lights,
         {

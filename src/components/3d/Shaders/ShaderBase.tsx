@@ -25,9 +25,9 @@ const ShaderBaseComponent: React.FC<Omit<ShaderBaseProps, 'texture'> & { texture
         u_resolution: { value: new Vector2() },
         u_texture_1: { type: "t", value: texture }
     }), []);
-
-    const width = (Math.trunc(viewport.width * 10)/10) * viewport.dpr;
-    const height = (Math.trunc(viewport.height * 10)/10) * viewport.dpr;
+    const dpr = Math.max(viewport.dpr, 2);
+    const width = (Math.trunc(viewport.width * 10)/10) * dpr;
+    const height = (Math.trunc(viewport.height * 10)/10) * dpr;
     useEffect(() => {
         uniforms.u_resolution.value = new Vector2(width, height);
     }, [width, height])
