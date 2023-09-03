@@ -92,7 +92,7 @@ const vertexShader = `
 
 		float distanceColorMultiplier = 0.01;
 
-        pos += curlNoise(pos * (uCurlIntensity * (uTime * 0.005))) * uCurlAmplitude;
+        pos += curlNoise(pos * (uCurlIntensity * (uTime * 0.0075))) * uCurlAmplitude;
 
 		vec4 worldPosition = modelMatrix * vec4(pos.xyz, 1.0);
 		vec4 mvPosition = viewMatrix * worldPosition;
@@ -163,7 +163,9 @@ const ParticlesElem = () => {
     const dpr = viewport.dpr;
 
     const width = (Math.trunc(viewport.width * 100)/100);
-    const particlesCount = width > mobileViewportBreak ? 350 : 200;
+    const isMobileOrSafari = width < mobileViewportBreak || isSafari;
+
+    const particlesCount = isMobileOrSafari ? 600 : 400;
     const uniforms = useMemo(() => UniformsUtils.merge([
         UniformsLib.lights,
         {
@@ -204,9 +206,9 @@ const ParticlesElem = () => {
         for (let i = 0; i < length; i++) {
             const i3 = i * 3;
 
-            let x = Math.random();
-            let y = Math.random();
-            let z = Math.random();
+            let x: number;
+            let y: number;
+            let z: number;
 
             //calculate this on CPU cause i need iterations
             y = 1 - (i / (length)) * 2;
