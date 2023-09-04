@@ -165,7 +165,7 @@ const ParticlesElem = () => {
     const width = (Math.trunc(viewport.width * 100)/100);
     const isMobileOrSafari = width < mobileViewportBreak || isSafari;
 
-    const particlesCount = isMobileOrSafari ? 500 : 400;
+    const particlesCount = isMobileOrSafari ? 450 : 400;
     const uniforms = useMemo(() => UniformsUtils.merge([
         UniformsLib.lights,
         {
