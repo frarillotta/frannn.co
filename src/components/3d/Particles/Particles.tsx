@@ -165,7 +165,7 @@ const ParticlesElem = () => {
     const width = (Math.trunc(viewport.width * 100)/100);
     const isMobileOrSafari = width < mobileViewportBreak || isSafari;
 
-    const particlesCount = isMobileOrSafari ? 450 : 400;
+    const particlesCount = isMobileOrSafari ? 350 : 400;
     const uniforms = useMemo(() => UniformsUtils.merge([
         UniformsLib.lights,
         {
@@ -202,7 +202,6 @@ const ParticlesElem = () => {
         const length = particlesCount * particlesCount;
         const particles = new Float32Array(length * 3);
         const phi = Math.PI * (Math.sqrt(5.) - 1.);
-
         for (let i = 0; i < length; i++) {
             const i3 = i * 3;
 
@@ -226,7 +225,6 @@ const ParticlesElem = () => {
             particles[i3 + 1] = y;
             particles[i3 + 2] = z;
         }
-
         return particles;
 
     }, [particlesCount]);
