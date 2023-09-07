@@ -74,7 +74,7 @@ export default function Page() {
                   <Image fill={true} src={galaticasmirogiornoIcon} alt="galaticasmirogiorno icon" />
                 </ImageWrapper>
               </Card.PresentationImage>
-              <Card.Title>  <OutLink href="https://www.galaticasmirogiorno.com/projects"> GALATICASMIROGIORNO </OutLink>  </Card.Title>
+              <Card.Title>  <OutLink href="https://www.galaticasmirogiorno.com"> GALATICASMIROGIORNO </OutLink>  </Card.Title>
               <Card.AdditionalSubtitle>Next.js, framer-motion, SVG</Card.AdditionalSubtitle>
               <Card.Description>
                 Minimalist website to showcase my friend&lsquo;s projects for their upcoming studio.
@@ -235,7 +235,6 @@ const ShaderLink: React.FC<{ children: React.ReactNode, href: string }> = ({ chi
   }
 
   return <StyledLink
-    href={href}
     whileHover="whileHover"
   >
     {children}
@@ -244,7 +243,8 @@ const ShaderLink: React.FC<{ children: React.ReactNode, href: string }> = ({ chi
 
 }
 
-const StyledLink = styled(MotionLink)`
+// const StyledLink = styled(MotionLink)`
+const StyledLink = styled(motion.div)`
 
   position: relative;
   width: 100%;
