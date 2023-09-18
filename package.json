@@ -20,6 +20,7 @@
     "@react-three/drei": "^9.80.8",
     "@react-three/fiber": "^8.13.7",
     "@react-three/offscreen": "^0.0.8",
+    "@vercel/analytics": "^1.0.2",
     "framer-motion": "^10.16.1",
     "next": "13.4.19",
     "nice-color-palettes": "^3.0.0",
